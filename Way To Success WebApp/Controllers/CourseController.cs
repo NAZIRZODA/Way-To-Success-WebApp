@@ -6,7 +6,7 @@ namespace Way_To_Success_WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LanguageController : ControllerBase
+    public class CourseController : ControllerBase
     {
         // GET: api/<LanguageController>
         [HttpGet]

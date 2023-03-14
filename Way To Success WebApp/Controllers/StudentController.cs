@@ -24,9 +24,9 @@ namespace Way_To_Success_WebApp.Controllers
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
-        public string Get(ulong id)
+        public Student get(ulong id)
         {
-            return _studentService.GetById(Convert.ToUInt64(id));
+            return _studentService.GetById(id);
         }
 
         // POST api/<StudentController>
@@ -45,8 +45,9 @@ namespace Way_To_Success_WebApp.Controllers
 
         // DELETE api/<StudentController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(ulong id, Student student)
         {
+            _studentService.Delete(student, id);
         }
     }
 }

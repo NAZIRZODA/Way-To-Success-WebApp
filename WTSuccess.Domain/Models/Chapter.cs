@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WTSuccess.Domain.Models
 {
-    public class Catalog : EntityBase
+    public class Chapter : EntityBase
     {
-        public List<Content> Contents { get; set; }
+        public List<Topic> Contents { get; set; }
+        public ulong ExamId { get; set; }
         public Exam Exam { get; set; }
     }
 }

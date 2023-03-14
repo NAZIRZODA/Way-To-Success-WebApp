@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.Context;
 using WTSuccess.Domain.Models;
 
-namespace WTSuccess.Application.Services
+namespace WTSuccess.Infrastructure.Persistence.Repositories
 {
-    public class CatalogService : BaseService<Catalog>
+    public class CourseRepository : BaseRepository<Course>, ILanguageRepository
     {
-        public CatalogService(IBaseRepository<Catalog> repository) : base(repository)
+        public CourseRepository(WTSuccessContext dbcontext) 
         {
         }
     }

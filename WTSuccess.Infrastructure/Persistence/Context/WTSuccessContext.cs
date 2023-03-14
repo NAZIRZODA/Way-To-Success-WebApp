@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +20,12 @@ namespace WTSuccess.Application.Context
 
         public WTSuccessContext(DbContextOptions<WTSuccessContext> options) : base(options)
         {
-           // Database.EnsureDeleted();
-           // Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
-        public DbSet<Student> Students { get; set; }
-       public DbSet<Language> Languages { get; set; }
+        public DbSet<Student> Students { get; set; } = null!;
+       public DbSet<Course> Languages { get; set; }
        public DbSet<Exam> Exams { get; set; }
 
 
@@ -45,20 +47,21 @@ namespace WTSuccess.Application.Context
 
         void StudentMapping(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().HasKey(i => i.Id);
+            modelBuilder.Entity<Student>().Property(p => p.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Student>().HasKey(p=>p.Id);
         }
 
         void LanguageMapping(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Language>().HasKey(l => l.Id);
-            modelBuilder.Entity<Student>().HasMany<Language>().WithOne(c => c.Student);
+            modelBuilder.Entity<Student>().HasMany<Course>().WithOne(c => c.Student);
         }
 
 
         void ExamMapping(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Exam>().HasKey(e => e.Id);
-            modelBuilder.Entity<Exam>().HasMany<Question>(e => e.Questions).WithOne(q => q.Exam);
+            // modelBuilder.Entity<Exam>().HasKey(e => e.Id);
+            modelBuilder.Entity<Exam>().HasMany<Question>(e => e.Questions);//WithOne(q => q.Exam);
         }
     }
 }

@@ -14,10 +14,11 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+builder.Services.AddScoped<ILanguageRepository, CourseRepository>();
 builder.Services.AddScoped<IExamRepository, ExamRepository>();
 builder.Services.AddDbContext<WTSuccessContext>(optionsAction=>optionsAction.UseNpgsql("Host=localhost;Port=5432;Username=postgres;DataBase=WayToSuccess;Password=2415"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();

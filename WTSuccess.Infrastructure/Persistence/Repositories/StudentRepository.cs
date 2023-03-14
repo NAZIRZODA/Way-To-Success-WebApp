@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net.WebSockets;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Context;
 using WTSuccess.Domain.Models;
@@ -27,6 +28,7 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
             if (dbValue != null)
             {
                 dbValue.Name= entity.Name;
+                //dbValue.Surname = entity.Surname;
                 dbValue.Email= entity.Email;
                 dbValue.Password= entity.Password;
                 _dbSet.Update(dbValue);
@@ -38,6 +40,13 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
         {
             var dbValue= _dbSet.Find(id);
             return dbValue;
+        }
+
+        public override void Delete(Student entity, ulong id)
+        {
+            var dbValue = _dbSet.Find(id);
+            _dbSet.Remove(dbValue);
+            _context.SaveChanges();
         }
     }
 }

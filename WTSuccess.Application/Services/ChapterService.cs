@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces.Repositories;
-using WTSuccess.Application.Context;
 using WTSuccess.Domain.Models;
 
-namespace WTSuccess.Infrastructure.Persistence.Repositories
+namespace WTSuccess.Application.Services
 {
-    public class LanguageRepository : BaseRepository<Language>, ILanguageRepository
+    public class ChapterService : BaseService<Chapter>
     {
-        public LanguageRepository(WTSuccessContext dbcontext) 
+        public ChapterService(IBaseRepository<Chapter> repository) : base(repository)
         {
         }
     }

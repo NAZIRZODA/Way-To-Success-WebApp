@@ -7,7 +7,7 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Common.Interfaces
 {
-    public interface ILanguageService : IBaseService<Language>
+    public interface ITopicService:IBaseService<Topic>
     {
     }
 }

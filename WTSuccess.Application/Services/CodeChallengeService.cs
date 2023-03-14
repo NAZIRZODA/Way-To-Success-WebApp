@@ -10,6 +10,7 @@ namespace WTSuccess.Application.Services
 {
     public class CodeChallengeService : BaseService<CodeChallenge>
     {
+        
         public CodeChallengeService(IBaseRepository<CodeChallenge> repository) : base(repository)
         {
         }

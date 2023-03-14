@@ -7,7 +7,7 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Common.Interfaces
 {
-    public interface IContentService:IBaseService<Content>
+    public interface ICourseService : IBaseService<Course>
     {
     }
 }

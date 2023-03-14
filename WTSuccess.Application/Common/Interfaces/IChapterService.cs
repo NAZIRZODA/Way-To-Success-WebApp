@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WTSuccess.Domain.Models;
 namespace WTSuccess.Application.Common.Interfaces
 {
-    public interface ICatalogService : IBaseService<Catalog>
+    public interface IChapterService : IBaseService<Chapter>
     {
 
     }
