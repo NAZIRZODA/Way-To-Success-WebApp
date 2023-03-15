@@ -1,11 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Context
@@ -17,7 +10,10 @@ namespace WTSuccess.Application.Context
         //    Database.EnsureDeleted();
         //    Database.EnsureCreated();
         //}
-
+        public WTSuccessContext()
+        {
+            
+        }
         public WTSuccessContext(DbContextOptions<WTSuccessContext> options) : base(options)
         {
             //Database.EnsureDeleted();

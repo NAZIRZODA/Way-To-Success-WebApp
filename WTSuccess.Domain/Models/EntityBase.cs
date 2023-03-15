@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WTSuccess.Domain.Models
 {
@@ -12,5 +6,8 @@ namespace WTSuccess.Domain.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public ulong Id { get; set; }
+
+        public DateTime CreateAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

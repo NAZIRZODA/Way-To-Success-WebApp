@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WTSuccess.Application.RequestModels;
+using WTSuccess.Application.ResponseModels;
 using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Common.Interfaces
 {
-    public interface IBaseService<TEntity> where TEntity : EntityBase
+    public interface IBaseService<TEntity, TResponseModel, TRequestModel>
+        where TEntity : EntityBase
+        where TResponseModel : BaseResponseModel
+        where TRequestModel : BaseRequestModel
     {
-        void Add(TEntity entity);
-        void Delete(TEntity entity, ulong id);
-        void Update(TEntity entity, ulong id);
-        TEntity GetById(ulong id);
+        void Add(TRequestModel request);
+        void Delete(ulong id);
+        void Update(TRequestModel entity, ulong id);
+        TResponseModel GetById(ulong id);
     }
 }

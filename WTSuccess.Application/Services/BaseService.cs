@@ -1,39 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.RequestModels;
+using WTSuccess.Application.ResponseModels;
 using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Services
 {
-    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : EntityBase
+    public abstract class
+        BaseService<TEntity, TResponseModel, TRequestModel> : IBaseService<TEntity, TResponseModel, TRequestModel>
+        where TEntity : EntityBase
+        where TResponseModel : BaseResponseModel
+        where TRequestModel : BaseRequestModel
     {
-        IBaseRepository<TEntity> _repository;
-        public BaseService(IBaseRepository<TEntity> repository)
+        protected IBaseRepository<TEntity> Repository;
+        protected IMapper Mapper { get; }
+
+        protected BaseService(IBaseRepository<TEntity> repository, IMapper mapper)
         {
-            _repository = repository;
-        }
-        public virtual void Add(TEntity entity)
-        {
-           _repository.Add(entity);
+            Repository = repository;
+            Mapper = mapper;
         }
 
-        public void Delete(TEntity entity, ulong id)
+        public virtual void Add(TRequestModel request)
         {
-           _repository.Delete(entity, id);
+            var entity = Mapper.Map<TRequestModel, TEntity>(request);
+            entity.CreateAt = DateTime.Now;
+            entity.UpdatedAt = DateTime.Now;
+            Repository.Add(entity);
         }
 
-        public TEntity GetById(ulong id)
+        public void Delete(ulong id)
         {
-            return _repository.GetById(id);
+            Repository.Delete(id);
         }
 
-        public void Update(TEntity entity, ulong id)
+        public virtual TResponseModel GetById(ulong id)
         {
-            _repository.Update(entity, id);
+            return Mapper.Map<TEntity, TResponseModel>(Repository.GetById(id));
+        }
+
+        public void Update(TRequestModel request, ulong id)
+        {
+            var entity = Mapper.Map<TRequestModel, TEntity>(request);
+            entity.UpdatedAt = DateTime.Now;
+            Repository.Update(entity);
         }
     }
 }

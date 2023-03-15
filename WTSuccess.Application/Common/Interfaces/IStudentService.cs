@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WTSuccess.Application.RequestModels.StudentRequestModels;
+using WTSuccess.Application.ResponseModels.StudentResponseModels.cs;
 using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Common.Interfaces
 {
-    public interface IStudentService:IBaseService<Student>
+    public interface IStudentService : IBaseService<Student, StudentResponseModel, StudentRequestModel>
     {
-
     }
 }

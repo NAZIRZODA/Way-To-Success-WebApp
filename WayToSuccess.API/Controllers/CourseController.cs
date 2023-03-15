@@ -2,7 +2,7 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Way_To_Success_WebApp.Controllers
+namespace WayToSuccess.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

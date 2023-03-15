@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Way To Success WebApp", "Way To Success WebApp\Way To Success WebApp.csproj", "{6CE97273-9EF4-4030-AFA0-ABA17CCAD143}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WayToSuccess.API", "WayToSuccess.API\WayToSuccess.API.csproj", "{6CE97273-9EF4-4030-AFA0-ABA17CCAD143}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{E41D473B-FF6C-48F1-AD0D-89F7A202D278}"
 EndProject

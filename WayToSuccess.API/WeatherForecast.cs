@@ -1,4 +1,4 @@
-namespace Way_To_Success_WebApp
+namespace WayToSuccess.API
 {
     public class WeatherForecast
     {

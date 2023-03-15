@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.RequestModels.StudentRequestModels;
+using WTSuccess.Application.ResponseModels.StudentResponseModels.cs;
 using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Services
 {
-    public class StudentService : BaseService<Student>, IStudentService
+    public class StudentService : BaseService<Student, StudentResponseModel, StudentRequestModel>, IStudentService
     {
-        private readonly IStudentRepository _studentRepository;
-        public StudentService(IStudentRepository repository) : base(repository)
+        public StudentService(IStudentRepository repository, IMapper mapper) : base(repository, mapper)
         {
-            _studentRepository = repository;
+        }
+
+        public override StudentResponseModel GetById(ulong id)
+        {
+            return Mapper.Map<Student, StudentResponseModel>(new Student(){Name = "Ali", Surname = "Vali"});
         }
     }
 }
