@@ -5,6 +5,8 @@ namespace API.Tests
         [SetUp]
         public void Setup()
         {
+            //Test build
+            asdasjhdkjashdkjahsd
         }
 
         [Test]
