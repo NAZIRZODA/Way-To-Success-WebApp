@@ -10,5 +10,16 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
         public StudentRepository(WTSuccessContext context) : base(context)
         {
         }
+
+        public override void Update(Student entity, ulong id)
+        {
+            var dbValue = Context.Set<Student>().Find(id);
+            if (dbValue != null)
+            {
+                dbValue.Name = entity.Name;
+                dbValue.Surname = entity.Surname;
+                dbValue.Email = entity.Email;
+            }
+        }
     }
 }

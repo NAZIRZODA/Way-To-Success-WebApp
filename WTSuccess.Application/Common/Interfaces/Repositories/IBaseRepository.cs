@@ -6,7 +6,7 @@ namespace WTSuccess.Application.Common.Interfaces.Repositories
     {
         void Add(TEntity entity);
         void Delete(ulong id);
-        void Update(TEntity entity);
+        void Update(TEntity entity, ulong id);
         TEntity GetById(ulong id);
     }
 }

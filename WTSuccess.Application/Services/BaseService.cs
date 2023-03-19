@@ -25,8 +25,6 @@ namespace WTSuccess.Application.Services
         public virtual void Add(TRequestModel request)
         {
             var entity = Mapper.Map<TRequestModel, TEntity>(request);
-            entity.CreateAt = DateTime.Now;
-            entity.UpdatedAt = DateTime.Now;
             Repository.Add(entity);
         }
 
@@ -43,8 +41,7 @@ namespace WTSuccess.Application.Services
         public void Update(TRequestModel request, ulong id)
         {
             var entity = Mapper.Map<TRequestModel, TEntity>(request);
-            entity.UpdatedAt = DateTime.Now;
-            Repository.Update(entity);
+            Repository.Update(entity, id);
         }
     }
 }

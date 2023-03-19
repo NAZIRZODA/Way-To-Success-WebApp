@@ -43,7 +43,7 @@ namespace WayToSuccess.API.Controllers
 
         // PUT api/<StudentController>/5
         [HttpPut("{id}")]
-        public void Put([FromBody] CreateStudentRequestModel student, ulong id)
+        public void Put([FromBody] UpdateStudentRequestModel student, ulong id)
         {
             _studentService.Update(student, id);
         }

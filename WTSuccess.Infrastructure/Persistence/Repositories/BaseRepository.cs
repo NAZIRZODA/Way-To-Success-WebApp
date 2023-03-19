@@ -15,15 +15,17 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
 
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            Context.Set<T>().Add(entity);
+
         }
 
         public void Delete(ulong id)
         {
-            throw new NotImplementedException();
+            var dbValue = Context.Set<T>().Find(id);
+            if (dbValue != null) Context.Set<T>().Remove(dbValue);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity, ulong id)
         {
             throw new NotImplementedException();
         }

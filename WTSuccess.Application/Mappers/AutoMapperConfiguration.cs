@@ -14,7 +14,8 @@ public class AutoMapperConfiguration : Profile
 
         CreateMap<CreateStudentRequestModel, Student>()
             .ForMember(s => s.Surname, src => src.MapFrom(r => r.LastName));
-        
-        
+
+        CreateMap<UpdateStudentRequestModel, Student>()
+            .ForMember(s => s.Surname, src => src.MapFrom(r => r.LastName));
     }
 }
