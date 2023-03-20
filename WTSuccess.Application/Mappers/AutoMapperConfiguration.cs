@@ -1,5 +1,6 @@
 using AutoMapper;
 using WTSuccess.Application.RequestModels.StudentRequestModels;
+using WTSuccess.Application.ResponseModels.CourseResponseModels;
 using WTSuccess.Application.ResponseModels.StudentResponseModels.cs;
 using WTSuccess.Domain.Models;
 
@@ -17,5 +18,9 @@ public class AutoMapperConfiguration : Profile
 
         CreateMap<UpdateStudentRequestModel, Student>()
             .ForMember(s => s.Surname, src => src.MapFrom(r => r.LastName));
+
+        CreateMap<Course, CourseResponseModel>();
+        CreateMap<CreateStudentRequestModel, Course>();
+        CreateMap<UpdateStudentRequestModel, Course>();
     }
 }

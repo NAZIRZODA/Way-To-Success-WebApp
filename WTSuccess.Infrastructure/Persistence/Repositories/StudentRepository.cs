@@ -19,6 +19,8 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
                 dbValue.Name = entity.Name;
                 dbValue.Surname = entity.Surname;
                 dbValue.Email = entity.Email;
+                Context.Set<Student>().Update(dbValue);
+                Context.SaveChanges();
             }
         }
     }
