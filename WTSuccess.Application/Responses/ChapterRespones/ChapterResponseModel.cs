@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WTSuccess.Domain.Models;
 
-namespace WTSuccess.Domain.Models
+namespace WTSuccess.Application.Responses.ChapterRespones
 {
-    public class Course : EntityBase
+    public class ChapterResponseModel : BaseResponse
     {
         public string Name { get; set; }
         public List<Chapter> Chapters { get; set; }

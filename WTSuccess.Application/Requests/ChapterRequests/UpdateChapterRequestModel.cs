@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WTSuccess.Domain.Models;
 
-namespace WTSuccess.Domain.Models
+namespace WTSuccess.Application.Requests.ChapterRequests
 {
-    public class Chapter : EntityBase
+    public class UpdateChapterRequestModel : ChapterRequestModel
     {
         public List<Topic> Topics { get; set; }
         public Course Course { get; set; }

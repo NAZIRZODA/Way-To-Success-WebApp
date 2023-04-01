@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace WTSuccess.Domain.Models
 {
-    public class Exam : EntityBase
+    public class Topic : EntityBase
     {
-        public int ExamResult { get; set; }
+        public string Teory { get; set; }
+        public Chapter Chapter { get; set; }
         public ulong ChapterId { get; set; }
-        public ulong StudentId { get; set; }
     }
-
 }

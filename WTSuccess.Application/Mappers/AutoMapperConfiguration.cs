@@ -1,26 +1,34 @@
-using AutoMapper;
-using WTSuccess.Application.RequestModels.StudentRequestModels;
-using WTSuccess.Application.ResponseModels.CourseResponseModels;
-using WTSuccess.Application.ResponseModels.StudentResponseModels.cs;
+﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WTSuccess.Application.Requests.ChapterRequests;
+using WTSuccess.Application.Requests.CourseRequests;
+using WTSuccess.Application.Requests.StudentRequests;
+using WTSuccess.Application.Responses.ChapterRespones;
+using WTSuccess.Application.Responses.CourseRespnses;
+using WTSuccess.Application.Responses.StudentRespones;
 using WTSuccess.Domain.Models;
 
-namespace WTSuccess.Application.Mappers;
-
-public class AutoMapperConfiguration : Profile
+namespace WTSuccess.Application.Mappers
 {
-    public AutoMapperConfiguration()
+    public class AutoMapperConfiguration : Profile
     {
-        CreateMap<Student, StudentResponseModel>()
-            .ForMember(des => des.LastName, src => src.MapFrom(s => $"{s.Surname}jon"));
+        public AutoMapperConfiguration()
+        {
+            CreateMap<StudentRequestModel, Student>();
+            CreateMap<Student, StudentResponseModel>();
+            CreateMap<UpdateStudentRequestModel, Student>();
 
-        CreateMap<CreateStudentRequestModel, Student>()
-            .ForMember(s => s.Surname, src => src.MapFrom(r => r.LastName));
+            CreateMap<CourseRequestModel, Course>();
+            CreateMap<Course, CourseResponseModel>();
+            CreateMap<UpdateCourseRequestModel, Course>();
 
-        CreateMap<UpdateStudentRequestModel, Student>()
-            .ForMember(s => s.Surname, src => src.MapFrom(r => r.LastName));
-
-        CreateMap<Course, CourseResponseModel>();
-        CreateMap<CreateStudentRequestModel, Course>();
-        CreateMap<UpdateStudentRequestModel, Course>();
+            CreateMap<ChapterRequestModel, Chapter>();
+            CreateMap<Chapter, ChapterResponseModel>();
+            CreateMap<UpdateChapterRequestModel, Chapter>();
+        }
     }
 }

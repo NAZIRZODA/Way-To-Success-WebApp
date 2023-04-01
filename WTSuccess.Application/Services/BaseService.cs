@@ -1,47 +1,53 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
-using WTSuccess.Application.RequestModels;
-using WTSuccess.Application.ResponseModels;
+using WTSuccess.Application.Requests;
+using WTSuccess.Application.Responses;
 using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Services
 {
-    public abstract class
-        BaseService<TEntity, TResponseModel, TRequestModel> : IBaseService<TEntity, TResponseModel, TRequestModel>
+    public abstract class BaseService<TEntity, TResponseModel, TRequestModel> : IBaseService<TEntity, TResponseModel, TRequestModel>
         where TEntity : EntityBase
-        where TResponseModel : BaseResponseModel
-        where TRequestModel : BaseRequestModel
+        where TResponseModel : BaseResponse
+        where TRequestModel : BaseRequest
     {
-        protected IBaseRepository<TEntity> Repository;
-        protected IMapper Mapper { get; }
-
-        protected BaseService(IBaseRepository<TEntity> repository, IMapper mapper)
+        private readonly IRepository<TEntity> _repository;
+        private readonly IMapper _mapper;
+        public BaseService(IRepository<TEntity> repository, IMapper mapper)
         {
-            Repository = repository;
-            Mapper = mapper;
+            _repository = repository;
+            _mapper = mapper;
         }
 
         public virtual void Add(TRequestModel request)
         {
-            var entity = Mapper.Map<TRequestModel, TEntity>(request);
-            Repository.Add(entity);
+            throw new NotImplementedException();
         }
 
-        public void Delete(ulong id)
+        public virtual bool Delete(ulong id)
         {
-            Repository.Delete(id);
+            throw new NotImplementedException();
         }
 
-        public virtual TResponseModel GetById(ulong id)
+        public virtual TResponseModel Get(ulong id)
         {
-            return Mapper.Map<TEntity, TResponseModel>(Repository.GetById(id));
+            throw new NotImplementedException();
         }
 
-        public void Update(TRequestModel request, ulong id)
+        public virtual IEnumerable<TResponseModel> GetAll(int pageList, int pageNumber)
         {
-            var entity = Mapper.Map<TRequestModel, TEntity>(request);
-            Repository.Update(entity, id);
+            throw new NotImplementedException();
+        }
+
+        public virtual TResponseModel Update(ulong id, TRequestModel request)
+        {
+            throw new NotImplementedException();
         }
     }
 }
