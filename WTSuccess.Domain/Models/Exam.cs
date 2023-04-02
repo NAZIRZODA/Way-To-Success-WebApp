@@ -9,6 +9,7 @@ namespace WTSuccess.Domain.Models
     public class Exam : EntityBase
     {
         public int ExamResult { get; set; }
+        public int TrueAnswers { get; set; }
         public ulong ChapterId { get; set; }
         public ulong StudentId { get; set; }
     }

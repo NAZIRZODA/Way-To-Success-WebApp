@@ -8,8 +8,8 @@ namespace WTSuccess.Domain.Models
 {
     public class Chapter : EntityBase
     {
-        public List<Topic> Topics { get; set; }
-        public Course Course { get; set; }
+        public List<Topic>? Topics { get; set; }
+        public Course Course { get; set; } = null!;
         public ulong CourseId { get; set; }
     }
 }

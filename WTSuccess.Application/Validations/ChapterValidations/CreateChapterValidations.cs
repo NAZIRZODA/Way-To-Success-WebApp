@@ -8,9 +8,9 @@ using WTSuccess.Application.Requests.ChapterRequests;
 
 namespace WTSuccess.Application.Validations.ChapterValidations
 {
-    public class CreateChapterValidation : AbstractValidator<CreateChapterRequestModel>
+    public class CreateChapterValidations : AbstractValidator<CreateChapterRequestModel>
     {
-        public CreateChapterValidation()
+        public CreateChapterValidations()
         {
             RuleFor(chap => chap.Name).NotNull().NotEmpty();
             RuleFor(chap => chap.Students).NotEmpty().NotNull();

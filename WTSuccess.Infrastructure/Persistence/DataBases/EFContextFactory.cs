@@ -13,7 +13,7 @@ namespace WTSuccess.Infrastructure.Persistence.DataBases
         public EFContext CreateDbContext(string[] args)
         {
             var optionBuilder = new DbContextOptionsBuilder<EFContext>();
-            optionBuilder.UseNpgsql("Host=localhost;Port=5432;Database=WTSuccess;Username=postgres;Password=2415");
+            optionBuilder.UseNpgsql("Host=localhost;Port=5432;Database=WayToSuccess;Username=postgres;Password=2415");
             return new EFContext(optionBuilder.Options);
         }
     }

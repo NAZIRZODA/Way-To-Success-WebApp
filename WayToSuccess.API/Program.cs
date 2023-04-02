@@ -18,7 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EFContext>(options =>
 {
-    builder.Configuration.GetConnectionString("postgres");
+    builder.Configuration.GetConnectionString("DefaultConnection");
 }, ServiceLifetime.Scoped);
 
 var app = builder.Build();
