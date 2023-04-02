@@ -56,7 +56,6 @@ namespace WTSuccess.Application.Services
             var courseRequestToUpdate = request as UpdateCourseRequestModel;
             dbCourse.Name = courseRequestToUpdate.Name;
             dbCourse.Chapters = courseRequestToUpdate.Chapters;
-            dbCourse.Students = courseRequestToUpdate.Students;
             _repository.Update(dbCourse);
             _repository.SaveChanges();
             return _mapper.Map<UpdateCourseRequestModel, CourseResponseModel>(courseRequestToUpdate);
