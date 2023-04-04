@@ -10,7 +10,7 @@ namespace WTSuccess.Application.Requests.TopicRequests
     public class TopicRequestModel : BaseRequest
     {
         public string Teory { get; set; }
-        public Chapter Chapter { get; set; }
+        //public Chapter Chapter { get; set; }
         public ulong ChapterId { get; set; }
     }
 }
