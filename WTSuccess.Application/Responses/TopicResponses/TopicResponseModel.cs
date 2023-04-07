@@ -8,5 +8,8 @@ namespace WTSuccess.Application.Responses.TopicResponses
 {
     public class TopicResponseModel : BaseResponse
     {
+        public string Name { get; set; }
+        public string Teory { get; set; }
+        public ulong ChapterId { get; set; }
     }
 }

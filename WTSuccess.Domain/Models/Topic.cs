@@ -8,8 +8,9 @@ namespace WTSuccess.Domain.Models
 {
     public class Topic : EntityBase
     {
+        public string Name { get; set; }
         public string Teory { get; set; }
-        public Chapter Chapter { get; set; }
+        public virtual Chapter? Chapter { get; set; }
         public ulong ChapterId { get; set; }
     }
 }

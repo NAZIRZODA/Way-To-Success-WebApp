@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTSuccess.Domain.Tests", "W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTSuccess.Infrastructure.Tests", "WTSuccess.Infrastructure.Tests\WTSuccess.Infrastructure.Tests.csproj", "{B0809657-0883-44F2-9440-0784A5BF3881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WTSuccess.Infrastructure", "WTSuccess.Infrastructure\WTSuccess.Infrastructure.csproj", "{CFBF7A60-1F72-4030-A48A-1BC994E6F7E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WTSuccess.Infrastructure", "WTSuccess.Infrastructure\WTSuccess.Infrastructure.csproj", "{CFBF7A60-1F72-4030-A48A-1BC994E6F7E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

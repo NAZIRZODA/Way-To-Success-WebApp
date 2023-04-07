@@ -10,7 +10,8 @@ namespace WTSuccess.Application.Responses.ChapterRespones
     public class ChapterResponseModel : BaseResponse
     {
         public string Name { get; set; }
-        public List<Chapter> Chapters { get; set; }
+        public ulong CourseId { get; set; }
+        //public List<Chapter> Chapters { get; set; }
         //public List<Student> Students { get; set; }
     }
 }
