@@ -28,6 +28,12 @@ namespace WTSuccess.API.Controllers
             _studentService.Add(student);
         }
 
+        [HttpPost("AddCourse")]
+        public void AddCourse(ulong courseId, ulong studentId)
+        {
+            _studentService.AddCourse(courseId, studentId);
+        }
+
         [HttpPut("id")]
         public void Update(ulong id, StudentRequestModel student)
         {

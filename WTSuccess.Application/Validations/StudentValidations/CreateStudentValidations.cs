@@ -13,7 +13,7 @@ namespace WTSuccess.Application.Validations.StudentValidations
     {
         public CreateStudentValidations()
         {
-            RuleFor(s=>s.Name).NotEmpty().NotNull();
+            RuleFor(s => s.Name).NotEmpty().NotNull();
             RuleFor(s=>s.Surname).NotEmpty().NotNull();
             RuleFor(s=>s.Email).EmailAddress().NotEmpty().NotNull();
         }

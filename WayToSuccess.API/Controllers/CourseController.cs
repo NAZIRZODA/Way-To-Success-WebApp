@@ -32,7 +32,7 @@ namespace WTSuccess.API.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] CourseRequestModel course)
+        public void Post([FromBody] CreateCourseRequestModel course)
         {
             _courseService.Add(course);
         }

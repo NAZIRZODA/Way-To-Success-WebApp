@@ -55,7 +55,7 @@ namespace WTSuccess.Application.Services
             if (dbCourse == null) throw new ArgumentNullException(nameof(Course));
             var courseRequestToUpdate = request as UpdateCourseRequestModel;
             dbCourse.Name = courseRequestToUpdate.Name;
-            dbCourse.Chapters = courseRequestToUpdate.Chapters;
+            //dbCourse.Chapters = courseRequestToUpdate.Chapters;
             _repository.Update(dbCourse);
             _repository.SaveChanges();
             return _mapper.Map<UpdateCourseRequestModel, CourseResponseModel>(courseRequestToUpdate);
