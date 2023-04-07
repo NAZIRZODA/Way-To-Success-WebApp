@@ -9,6 +9,6 @@ namespace WTSuccess.Application.Common.Interfaces.Repositories
 {
     public interface IStudentRepository : IRepository<Student>
     {
-        public void AddCourse(Student student);
+
     }
 }

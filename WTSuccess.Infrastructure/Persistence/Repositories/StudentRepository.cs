@@ -19,10 +19,5 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
             _dbStudent = context.Set<Student>();
             _eFContext = context;
         }
-
-        public void AddCourse(Student student)
-        {
-            _dbStudent.Update(student);
-        }
     }
 }

@@ -79,7 +79,6 @@ namespace WTSuccess.Application.Services
             var student = _studentRepository.FindById(studentId);
             if (student == null) throw new ArgumentNullException(nameof(Student));
             student.Courses.Add(course);
-            _studentRepository.AddCourse(student);
             _studentRepository.SaveChanges();
         }
     }
