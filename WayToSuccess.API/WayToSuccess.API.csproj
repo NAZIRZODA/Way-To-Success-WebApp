@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WTSuccess.Application\WTSuccess.Application.csproj" />
-    <ProjectReference Include="..\WTSuccess.Domain\WTSuccess.Domain.csproj" />
     <ProjectReference Include="..\WTSuccess.Infrastructure\WTSuccess.Infrastructure.csproj" />
   </ItemGroup>
 

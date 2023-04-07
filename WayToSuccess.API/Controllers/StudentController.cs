@@ -6,7 +6,7 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.API.Controllers
 {
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     [ApiController]
     public class StudentController : ControllerBase
     {
