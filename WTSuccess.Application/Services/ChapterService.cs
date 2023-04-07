@@ -16,11 +16,11 @@ namespace WTSuccess.Application.Services
 {
     public class ChapterService : BaseService<Chapter, ChapterResponseModel, ChapterRequestModel>, IChapterService
     {
-        private readonly IRepository<Chapter> _repository;
+        private readonly IChapterRepository _chapterRepository;
         private readonly IMapper _mapper;
-        public ChapterService(IRepository<Chapter> repository, IMapper mapper) : base(repository, mapper)
+        public ChapterService(IChapterRepository repository, IMapper mapper) : base(repository, mapper)
         {
-            _repository = repository;
+            _chapterRepository = repository;
             _mapper = mapper;
         }
 
@@ -29,13 +29,13 @@ namespace WTSuccess.Application.Services
             var parsedToCreate = request as CreateChapterRequestModel;
             if (parsedToCreate == null) throw new ArgumentNullException(nameof(Chapter));
             var mappedToChapter = _mapper.Map<CreateChapterRequestModel, Chapter>(parsedToCreate);
-            _repository.Add(mappedToChapter);
-            _repository.SaveChanges();
+            _chapterRepository.Add(mappedToChapter);
+            _chapterRepository.SaveChanges();
         }
 
         public override ChapterResponseModel Get(ulong id)
         {
-            var dbChapter = _repository.FindById(id);
+            var dbChapter = _chapterRepository.FindById(id);
             if (dbChapter == null) throw new ArgumentNullException(nameof(Chapter));
             var mappedToResponse = _mapper.Map<Chapter, ChapterResponseModel>(dbChapter);
             return mappedToResponse;
@@ -43,30 +43,30 @@ namespace WTSuccess.Application.Services
 
         public override IEnumerable<ChapterResponseModel> GetAll(int pageList, int pageNumber)
         {
-            var dbChapter = _repository.GetAll(pageList, pageNumber);
+            var dbChapter = _chapterRepository.GetAll(pageList, pageNumber);
             var mappedToRespones = _mapper.Map<IEnumerable<Chapter>, IEnumerable<ChapterResponseModel>>(dbChapter);
             return mappedToRespones;
         }
 
         public override ChapterResponseModel Update(ulong id, ChapterRequestModel request)
         {
-            var dbChapter = _repository.FindById(id);
+            var dbChapter = _chapterRepository.FindById(id);
             if (dbChapter == null) throw new ArgumentNullException(nameof(Chapter));
             var chapterRequestToUpdate = request as UpdateChapterRequestModel;
             dbChapter.Topics = chapterRequestToUpdate.Topics;
             dbChapter.Course = chapterRequestToUpdate.Course;
             dbChapter.CourseId = chapterRequestToUpdate.CourseId;
-            _repository.Update(dbChapter);
-            _repository.SaveChanges();
+            _chapterRepository.Update(dbChapter);
+            _chapterRepository.SaveChanges();
             return _mapper.Map<UpdateChapterRequestModel, ChapterResponseModel>(chapterRequestToUpdate);
         }
 
         public override bool Delete(ulong id)
         {
-            var dbChapter = _repository.FindById(id);
+            var dbChapter = _chapterRepository.FindById(id);
             if (dbChapter == null) throw new ArgumentNullException(nameof(Chapter));
-            _repository.Delete(dbChapter);
-            _repository.SaveChanges();
+            _chapterRepository.Delete(dbChapter);
+            _chapterRepository.SaveChanges();
             return true;
         }
     }

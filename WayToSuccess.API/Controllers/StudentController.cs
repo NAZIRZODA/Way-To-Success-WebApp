@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Responses.StudentRespones;

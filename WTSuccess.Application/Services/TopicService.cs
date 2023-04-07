@@ -14,55 +14,60 @@ namespace WTSuccess.Application.Services
 {
     public class TopicService : BaseService<Topic, TopicResponseModel, TopicRequestModel>, ITopicService
     {
-        private readonly IRepository<Topic> _repository;
+        private readonly ITopicRepository _topicRepository;
         private readonly IMapper _mapper;
-        public TopicService(IRepository<Topic> repository, IMapper mapper) : base(repository, mapper)
+        public TopicService(ITopicRepository repository, IMapper mapper) : base(repository, mapper)
         {
-            _repository = repository;
+            _topicRepository = repository;
             _mapper = mapper;
         }
 
         public override void Add(TopicRequestModel request)
         {
+
             var parsedToCreate = request as CreateTopicRequestModel;
             if (parsedToCreate == null) throw new ArgumentNullException(nameof(Topic));
+
             var mappedToTopic = _mapper.Map<CreateTopicRequestModel, Topic>(parsedToCreate);
-            _repository.Add(mappedToTopic);
-            _repository.SaveChanges();
+            _topicRepository.Add(mappedToTopic);
+            _topicRepository.SaveChanges();
         }
 
         public override TopicResponseModel Update(ulong id, TopicRequestModel request)
         {
-            var dbTopic = _repository.FindById(id);
+            var dbTopic = _topicRepository.FindById(id);
             if (dbTopic == null) throw new ArgumentNullException(nameof(Topic));
+
             var topicRequestToUpdate = request as UpdateTopicRequestModel;
             dbTopic.Teory = topicRequestToUpdate.Teory;
-            _repository.Update(dbTopic);
-            _repository.SaveChanges();
+            _topicRepository.Update(dbTopic);
+            _topicRepository.SaveChanges();
             return _mapper.Map<UpdateTopicRequestModel, TopicResponseModel>(topicRequestToUpdate);
         }
 
         public override TopicResponseModel Get(ulong id)
         {
-            var dbTopic = _repository.FindById(id);
+            var dbTopic = _topicRepository.FindById(id);
             if (dbTopic == null) throw new ArgumentNullException(nameof(Topic));
+
             var mappedToResponse = _mapper.Map<Topic, TopicResponseModel>(dbTopic);
             return mappedToResponse;
         }
 
         public override IEnumerable<TopicResponseModel> GetAll(int pageList, int pageNumber)
         {
-            var dbTopics = _repository.GetAll(pageList, pageNumber);
+            var dbTopics = _topicRepository.GetAll(pageList, pageNumber);
             var mappedToRespones = _mapper.Map<IEnumerable<Topic>, IEnumerable<TopicResponseModel>>(dbTopics);
             return mappedToRespones;
         }
 
         public override bool Delete(ulong id)
         {
-            var dbTopic = _repository.FindById(id);
+            var dbTopic = _topicRepository.FindById(id);
             if (dbTopic == null) throw new ArgumentNullException(nameof(Topic));
-            _repository.Delete(dbTopic);
-            _repository.SaveChanges();
+
+            _topicRepository.Delete(dbTopic);
+            _topicRepository.SaveChanges();
             return true;
         }
 
