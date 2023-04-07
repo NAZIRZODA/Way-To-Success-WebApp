@@ -37,7 +37,6 @@ namespace WTSuccess.Application.Services
             if (dbTopic == null) throw new ArgumentNullException(nameof(Topic));
             var topicRequestToUpdate = request as UpdateTopicRequestModel;
             dbTopic.Teory = topicRequestToUpdate.Teory;
-            dbTopic.ChapterId = topicRequestToUpdate.ChapterId;
             _repository.Update(dbTopic);
             _repository.SaveChanges();
             return _mapper.Map<UpdateTopicRequestModel, TopicResponseModel>(topicRequestToUpdate);
