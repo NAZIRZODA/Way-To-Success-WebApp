@@ -22,7 +22,7 @@ namespace WTSuccess.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Update(ulong id, TopicRequestModel topic)
+        public void Update(ulong id, UpdateTopicRequestModel topic)
         {
             _topicService.Update(id, topic);
         }

@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
@@ -18,6 +20,7 @@ namespace WTSuccess.Application.Services
     {
         private readonly IChapterRepository _chapterRepository;
         private readonly IMapper _mapper;
+
         public ChapterService(IChapterRepository repository, IMapper mapper) : base(repository, mapper)
         {
             _chapterRepository = repository;
@@ -27,7 +30,8 @@ namespace WTSuccess.Application.Services
         public override void Add(ChapterRequestModel request)
         {
             var parsedToCreate = request as CreateChapterRequestModel;
-            if (parsedToCreate == null) throw new ArgumentNullException(nameof(Chapter));
+            if (parsedToCreate == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             var mappedToChapter = _mapper.Map<CreateChapterRequestModel, Chapter>(parsedToCreate);
             _chapterRepository.Add(mappedToChapter);
             _chapterRepository.SaveChanges();
@@ -36,7 +40,8 @@ namespace WTSuccess.Application.Services
         public override ChapterResponseModel Get(ulong id)
         {
             var dbChapter = _chapterRepository.FindById(id);
-            if (dbChapter == null) throw new ArgumentNullException(nameof(Chapter));
+            if (dbChapter == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             var mappedToResponse = _mapper.Map<Chapter, ChapterResponseModel>(dbChapter);
             return mappedToResponse;
         }
@@ -51,20 +56,20 @@ namespace WTSuccess.Application.Services
         public override ChapterResponseModel Update(ulong id, ChapterRequestModel request)
         {
             var dbChapter = _chapterRepository.FindById(id);
-            if (dbChapter == null) throw new ArgumentNullException(nameof(Chapter));
+            if (dbChapter == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             var chapterRequestToUpdate = request as UpdateChapterRequestModel;
-            dbChapter.Topics = chapterRequestToUpdate.Topics;
-            dbChapter.Course = chapterRequestToUpdate.Course;
-            dbChapter.CourseId = chapterRequestToUpdate.CourseId;
+            var result = _mapper.Map(chapterRequestToUpdate, dbChapter);
             _chapterRepository.Update(dbChapter);
             _chapterRepository.SaveChanges();
-            return _mapper.Map<UpdateChapterRequestModel, ChapterResponseModel>(chapterRequestToUpdate);
+            return _mapper.Map<Chapter, ChapterResponseModel>(dbChapter);
         }
 
         public override bool Delete(ulong id)
         {
             var dbChapter = _chapterRepository.FindById(id);
-            if (dbChapter == null) throw new ArgumentNullException(nameof(Chapter));
+            if (dbChapter == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             _chapterRepository.Delete(dbChapter);
             _chapterRepository.SaveChanges();
             return true;

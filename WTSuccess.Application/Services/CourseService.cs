@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests.CourseRequests;
 using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
@@ -19,6 +21,7 @@ namespace WTSuccess.Application.Services
     {
         private readonly ICourseRepository _courseRepository;
         private readonly IMapper _mapper;
+
         public CourseService(ICourseRepository repository, IMapper mapper) : base(repository, mapper)
         {
             _courseRepository = repository;
@@ -28,7 +31,8 @@ namespace WTSuccess.Application.Services
         public override void Add(CourseRequestModel request)
         {
             var parsedToCreate = request as CreateCourseRequestModel;
-            if (parsedToCreate == null) throw new ArgumentNullException(nameof(Course));
+            if (parsedToCreate == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             var mappedToChapter = _mapper.Map<CreateCourseRequestModel, Course>(parsedToCreate);
             _courseRepository.Add(mappedToChapter);
             _courseRepository.SaveChanges();
@@ -37,7 +41,8 @@ namespace WTSuccess.Application.Services
         public override CourseResponseModel Get(ulong id)
         {
             var dbChapter = _courseRepository.FindById(id);
-            if (dbChapter == null) throw new ArgumentNullException(nameof(Course));
+            if (dbChapter == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             var mappedToResponse = _mapper.Map<Course, CourseResponseModel>(dbChapter);
             return mappedToResponse;
         }
@@ -52,19 +57,20 @@ namespace WTSuccess.Application.Services
         public override CourseResponseModel Update(ulong id, CourseRequestModel request)
         {
             var dbCourse = _courseRepository.FindById(id);
-            if (dbCourse == null) throw new ArgumentNullException(nameof(Course));
+            if (dbCourse == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             var courseRequestToUpdate = request as UpdateCourseRequestModel;
-            dbCourse.Name = courseRequestToUpdate.Name;
-            //dbCourse.Chapters = courseRequestToUpdate.Chapters;
+            var result = _mapper.Map(courseRequestToUpdate, dbCourse);
             _courseRepository.Update(dbCourse);
             _courseRepository.SaveChanges();
-            return _mapper.Map<UpdateCourseRequestModel, CourseResponseModel>(courseRequestToUpdate);
+            return _mapper.Map<Course, CourseResponseModel>(dbCourse);
         }
 
         public override bool Delete(ulong id)
         {
             var dbCourse = _courseRepository.FindById(id);
-            if (dbCourse == null) throw new ArgumentNullException(nameof(Course));
+            if (dbCourse == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
+
             _courseRepository.Delete(dbCourse);
             _courseRepository.SaveChanges();
             return true;

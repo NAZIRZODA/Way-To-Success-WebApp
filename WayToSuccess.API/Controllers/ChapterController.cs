@@ -33,14 +33,14 @@ namespace WTSuccess.API.Controllers
 
         // POST api/<ChapterController>
         [HttpPost]
-        public void Post([FromBody] ChapterRequestModel chapter)
+        public void Post([FromBody] CreateChapterRequestModel chapter)
         {
             _chapterService.Add(chapter);
         }
 
         // PUT api/<ChapterController>/5
         [HttpPut("{id}")]
-        public void Put(ulong id, [FromBody] ChapterRequestModel chapter)
+        public void Put(ulong id, [FromBody] UpdateChapterRequestModel chapter)
         {
             _chapterService.Update(id, chapter);
         }
