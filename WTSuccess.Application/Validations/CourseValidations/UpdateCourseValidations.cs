@@ -8,12 +8,11 @@ using WTSuccess.Application.Requests.CourseRequests;
 
 namespace WTSuccess.Application.Validations.CourseValidations
 {
-    public class CreateCourseValidations : AbstractValidator<CreateCourseRequestModel>
+    public class UpdateCourseValidations : AbstractValidator<UpdateCourseRequestModel>
     {
-        public CreateCourseValidations()
+        public UpdateCourseValidations()
         {
-            RuleFor(c => c.Name).NotNull().NotEmpty().MinimumLength(2).MaximumLength(30);
-            //RuleFor(c => c.Chapters).NotNull().NotEmpty();
+            RuleFor(n => n.Name).NotEmpty().NotNull().MinimumLength(2).MaximumLength(30);
         }
     }
 }

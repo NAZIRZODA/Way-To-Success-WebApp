@@ -1,7 +1,12 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Mappers;
+using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Services;
+using WTSuccess.Application.Validations.StudentValidations;
 using WTSuccess.Infrastructure.Persistence.DataBases;
 using WTSuccess.Infrastructure.Persistence.Repositories;
 
@@ -21,7 +26,11 @@ builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
 builder.Services.AddScoped<ITopicService, TopicService>();
 builder.Services.AddScoped<ITopicRepository, TopicRepository>();
 
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssembly(typeof(CreateStudentValidations).Assembly);
+
 builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EFContext>(options =>
