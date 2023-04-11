@@ -27,7 +27,7 @@ namespace WTSuccess.UnitTests.Application.Services
             _chapterService = new ChapterService(_mockChapterRepository.Object, _mockMapper.Object);
         }
 
-        [TestMethod]
+        [Test]
         public void Add_WithValidRequest_CallsRepositoryAddAndSaveChanges()
         {
             var request = new CreateChapterRequestModel();
@@ -65,7 +65,7 @@ namespace WTSuccess.UnitTests.Application.Services
             mockRepository.Verify(repo => repo.FindById((ulong)chapterId), Times.Once);
             mockMapper.Verify(mapper => mapper.Map<Chapter, ChapterResponseModel>(It.IsAny<Chapter>()), Times.Once);
         }
-        [Fact]
+        [Test]
         public void GetAll_ReturnsAllChapters()
         {
             var mockRepository = new Mock<IChapterRepository>();
