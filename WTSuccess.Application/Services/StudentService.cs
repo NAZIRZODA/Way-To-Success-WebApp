@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Exceptions;
-using WTSuccess.Application.Requests;
 using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Responses.StudentRespones;
 using WTSuccess.Domain.Models;
