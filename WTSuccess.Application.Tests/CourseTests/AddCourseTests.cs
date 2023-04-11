@@ -32,7 +32,6 @@ namespace WTSuccess.Application.Tests.CourseTests
             _mockMapper.Setup(service => service.Map<CreateCourseRequestModel, Course>(createCourseRequestModel))
                 .Returns(course);
 
-
             _mockCourseRepository.Setup(service => service.Add(It.IsAny<Course>()));
 
             var service = new CourseService(_mockCourseRepository.Object, _mockMapper.Object);
