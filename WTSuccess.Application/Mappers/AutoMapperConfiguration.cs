@@ -24,9 +24,9 @@ namespace WTSuccess.Application.Mappers
             CreateMap<Student, StudentResponseModel>();
             CreateMap<UpdateStudentRequestModel, Student>();
 
-            CreateMap<CourseRequestModel, Course>();
-            CreateMap<Course, CourseResponseModel>();
-            CreateMap<UpdateCourseRequestModel, Course>();
+            CreateMap<CourseRequestModel, Exam>();
+            CreateMap<Exam, CourseResponseModel>();
+            CreateMap<UpdateCourseRequestModel, Exam>();
 
             CreateMap<ChapterRequestModel, Chapter>();
             CreateMap<Chapter, ChapterResponseModel>();

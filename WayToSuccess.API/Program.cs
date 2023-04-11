@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ITopicService, TopicService>();
+builder.Services.AddScoped<ITopicRepository, TopicRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();

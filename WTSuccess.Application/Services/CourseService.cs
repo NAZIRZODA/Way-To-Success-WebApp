@@ -15,7 +15,7 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Services
 {
-    public class CourseService : BaseService<Course, CourseResponseModel, CourseRequestModel>, ICourseService
+    public class CourseService : BaseService<Exam, CourseResponseModel, CourseRequestModel>, ICourseService
     {
         private readonly ICourseRepository _courseRepository;
         private readonly IMapper _mapper;
@@ -28,8 +28,8 @@ namespace WTSuccess.Application.Services
         public override void Add(CourseRequestModel request)
         {
             var parsedToCreate = request as CreateCourseRequestModel;
-            if (parsedToCreate == null) throw new ArgumentNullException(nameof(Course));
-            var mappedToChapter = _mapper.Map<CreateCourseRequestModel, Course>(parsedToCreate);
+            if (parsedToCreate == null) throw new ArgumentNullException(nameof(Exam));
+            var mappedToChapter = _mapper.Map<CreateCourseRequestModel, Exam>(parsedToCreate);
             _courseRepository.Add(mappedToChapter);
             _courseRepository.SaveChanges();
         }
@@ -37,22 +37,22 @@ namespace WTSuccess.Application.Services
         public override CourseResponseModel Get(ulong id)
         {
             var dbChapter = _courseRepository.FindById(id);
-            if (dbChapter == null) throw new ArgumentNullException(nameof(Course));
-            var mappedToResponse = _mapper.Map<Course, CourseResponseModel>(dbChapter);
+            if (dbChapter == null) throw new ArgumentNullException(nameof(Exam));
+            var mappedToResponse = _mapper.Map<Exam, CourseResponseModel>(dbChapter);
             return mappedToResponse;
         }
 
         public override IEnumerable<CourseResponseModel> GetAll(int pageList, int pageNumber)
         {
             var dbCourse = _courseRepository.GetAll(pageList, pageNumber);
-            var mappedToRespones = _mapper.Map<IEnumerable<Course>, IEnumerable<CourseResponseModel>>(dbCourse);
+            var mappedToRespones = _mapper.Map<IEnumerable<Exam>, IEnumerable<CourseResponseModel>>(dbCourse);
             return mappedToRespones;
         }
 
         public override CourseResponseModel Update(ulong id, CourseRequestModel request)
         {
             var dbCourse = _courseRepository.FindById(id);
-            if (dbCourse == null) throw new ArgumentNullException(nameof(Course));
+            if (dbCourse == null) throw new ArgumentNullException(nameof(Exam));
             var courseRequestToUpdate = request as UpdateCourseRequestModel;
             dbCourse.Name = courseRequestToUpdate.Name;
             //dbCourse.Chapters = courseRequestToUpdate.Chapters;
@@ -64,7 +64,7 @@ namespace WTSuccess.Application.Services
         public override bool Delete(ulong id)
         {
             var dbCourse = _courseRepository.FindById(id);
-            if (dbCourse == null) throw new ArgumentNullException(nameof(Course));
+            if (dbCourse == null) throw new ArgumentNullException(nameof(Exam));
             _courseRepository.Delete(dbCourse);
             _courseRepository.SaveChanges();
             return true;

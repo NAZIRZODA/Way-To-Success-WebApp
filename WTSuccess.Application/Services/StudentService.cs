@@ -75,7 +75,7 @@ namespace WTSuccess.Application.Services
         public void AddCourse(ulong courseId, ulong studentId)
         {
             var course = _courseRepository.FindById(courseId);
-            if (course == null) throw new ArgumentNullException(nameof(Course));
+            if (course == null) throw new ArgumentNullException(nameof(Exam));
             var student = _studentRepository.FindById(studentId);
             if (student == null) throw new ArgumentNullException(nameof(Student));
             student.Courses.Add(course);

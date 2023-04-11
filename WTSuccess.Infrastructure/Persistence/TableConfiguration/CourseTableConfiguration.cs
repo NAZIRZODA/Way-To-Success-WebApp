@@ -9,11 +9,11 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
 {
-    public class CourseTableConfiguration : IEntityTypeConfiguration<Course>
+    public class CourseTableConfiguration : IEntityTypeConfiguration<Exam>
     {
-        public void Configure(EntityTypeBuilder<Course> builder)
+        public void Configure(EntityTypeBuilder<Exam> builder)
         {
-            builder.ToTable(nameof(Course));
+            builder.ToTable(nameof(Exam));
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
             builder.HasMany(c => c.Students).WithMany(s => s.Courses);
