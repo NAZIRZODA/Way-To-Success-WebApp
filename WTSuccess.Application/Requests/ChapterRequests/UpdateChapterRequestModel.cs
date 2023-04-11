@@ -10,7 +10,7 @@ namespace WTSuccess.Application.Requests.ChapterRequests
     public class UpdateChapterRequestModel : ChapterRequestModel
     {
         public List<Topic> Topics { get; set; }
-        public Exam Course { get; set; }
+        public Course Course { get; set; }
         public ulong CourseId { get; set; }
     }
 }

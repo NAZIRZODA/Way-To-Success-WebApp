@@ -36,7 +36,7 @@ namespace WTSuccess.API.Controllers
         }
 
         [HttpPut("id")]
-        public void Update(ulong id, StudentRequestModel student)
+        public void Update(ulong id, UpdateStudentRequestModel student)
         {
             _studentService.Update(id, student);
         }

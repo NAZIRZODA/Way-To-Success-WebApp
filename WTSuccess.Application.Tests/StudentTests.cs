@@ -1,6 +1,9 @@
+using Moq;
+using WTSuccess.Application.Common.Interfaces;
+
 namespace WTSuccess.Application.Tests
 {
-    public class Tests
+    public class StudentTests
     {
         [SetUp]
         public void Setup()
@@ -8,9 +11,9 @@ namespace WTSuccess.Application.Tests
         }
 
         [Test]
-        public void Test1()
+        public void AddStudent()
         {
-            Assert.Pass();
+
         }
     }
 }

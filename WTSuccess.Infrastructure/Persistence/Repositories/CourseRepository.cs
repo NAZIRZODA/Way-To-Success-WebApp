@@ -10,13 +10,13 @@ using WTSuccess.Infrastructure.Persistence.DataBases;
 
 namespace WTSuccess.Infrastructure.Persistence.Repositories
 {
-    public class CourseRepository : Repository<Exam>, ICourseRepository
+    public class CourseRepository : Repository<Course>, ICourseRepository
     {
-        private readonly DbSet<Exam> _dbCourse;
+        private readonly DbSet<Course> _dbCourse;
         private readonly EFContext _context;
         public CourseRepository(EFContext context) : base(context)
         {
-            _dbCourse = context.Set<Exam>();
+            _dbCourse = context.Set<Course>();
             _context = context;
         }
     }

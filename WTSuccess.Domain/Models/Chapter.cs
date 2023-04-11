@@ -10,7 +10,7 @@ namespace WTSuccess.Domain.Models
     {
         public string Name { get; set; }
         public virtual List<Topic>? Topics { get; set; }
-        public virtual Exam? Course { get; set; } = null!;
+        public virtual Course? Course { get; set; } = null!;
         public ulong CourseId { get; set; }
     }
 }
