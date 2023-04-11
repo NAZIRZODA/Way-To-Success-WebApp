@@ -2,9 +2,8 @@
 
 namespace WTSuccess.Application.Requests.Question
 {
-    public class UpdateQuestionRequestModel
+    public class UpdateQuestionRequestModel: QuestionRequestModel
     {
-        public ulong Id { get; set; }
-        public string Text { get; set; }
+        
     }
 }
