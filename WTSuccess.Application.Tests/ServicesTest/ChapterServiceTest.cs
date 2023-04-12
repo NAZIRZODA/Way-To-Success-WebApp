@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Net;
 using WTSuccess.Application.Common.Interfaces.Repositories;
@@ -8,7 +7,6 @@ using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
 using WTSuccess.Application.Services;
 using WTSuccess.Domain.Models;
-using Xunit;
 using Assert = NUnit.Framework.Assert;
 
 namespace WTSuccess.UnitTests.Application.Services
@@ -115,25 +113,6 @@ namespace WTSuccess.UnitTests.Application.Services
         //        Assert.AreEqual(chapters[1].Name, result.ElementAt(1).Name);
         //    }
 
-        //[Test]
-        //public void Update_ChapterExists_ShouldUpdateAndReturnChapterResponseModel()
-        //{
-        //    // Arrange
-        //    ulong id = 1;
-        //    var request = new UpdateChapterRequestModel { Name = "Updated Chapter Name" };
-        //    var dbChapter = new Chapter { Id = id, Name = "Original Chapter Name" };
-        //    _mockChapterRepository.Setup(x => x.FindById(id)).Returns(dbChapter);
-        //    // Act
-        //    var result = _chapterService.Update(id, request);
-
-        //    // Assert
-        //    Assert.IsNotNull(result);
-        //    Assert.IsInstanceOf<ChapterResponseModel>(result);
-        //    Assert.AreEqual(request.Id, result.CourseId);
-        //    Assert.AreEqual(request.Name, result.Name);
-        //    _mockChapterRepository.Verify(x => x.Update(dbChapter), Times.Once);
-        //    _mockChapterRepository.Verify(x => x.SaveChanges(), Times.Once);
-        //}
 
         [Test]
         public void UpdateChapter_WithValidIdAndRequest_ReturnsChapterResponseModel()
