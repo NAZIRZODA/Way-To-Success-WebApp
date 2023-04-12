@@ -86,8 +86,8 @@ namespace WTSuccess.UnitTests.Application.Services
 
             // Act & Assert
             var ex = Assert.Throws<HttpStatusCodeException>(() => _chapterService.Get(chapterId));
-            Assert.AreEqual(HttpStatusCode.NotFound, ex.StatusCode);
-            Assert.AreEqual(nameof(Student), ex.Message);
+            Assert.That(ex.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            Assert.That(ex.Message, Is.EqualTo(nameof(Student)));
         }
     }
 }
