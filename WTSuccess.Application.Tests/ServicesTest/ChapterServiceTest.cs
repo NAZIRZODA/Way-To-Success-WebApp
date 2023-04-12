@@ -51,25 +51,31 @@ namespace WTSuccess.UnitTests.Application.Services
 
             // Act & Assert
             var ex = Assert.Throws<HttpStatusCodeException>(() => _chapterService.Add(request));
-            Assert.AreEqual(HttpStatusCode.NotFound, ex.StatusCode);
-            Assert.AreEqual(nameof(Student), ex.Message);
+            Assert.That(ex.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            Assert.That(ex.Message, Is.EqualTo(nameof(Student)));
         }
-        //[Test]
-        //public void Get_ExistingChapterId_ShouldReturnChapterResponseModel()
-        //{
-        //    // Arrange
-        //    ulong chapterId = 1;
-        //    var chapter = new Chapter { Id = chapterId, Name = "Chapter 1" };
-        //    _mockChapterRepository.Setup(x => x.FindById(chapterId)).Returns(chapter);
-        //    var chapterService = new ChapterService(_mockChapterRepository.Object, _mockMapper.Object);
-        //    // Act
-        //    ChapterResponseModel result = chapterService.Get(chapterId);
 
-        //    // Assert
-        //    Assert.IsNotNull(result);
-        //    Assert.AreEqual(chapterId, result.CourseId);
-        //    Assert.AreEqual(chapter.Name, result.Name);
-        //}
+        [Test]
+        public void Get_ExistingChapterId_ShouldReturnChapterResponseModel()
+        {
+            // Arrange
+            ulong chapterId = 1;
+            ulong courseId = 2;
+            var chapter = new Chapter { Id = chapterId, Name = "Chapter 1" , CourseId=courseId};
+            _mockChapterRepository.Setup(x => x.FindById(chapterId)).Returns(chapter);
+            _mockMapper.Setup(m => m.Map<Chapter, ChapterResponseModel>(chapter))
+                .Returns(new ChapterResponseModel() { Name = "Chapter 1", CourseId = courseId });
+
+            var chapterService = new ChapterService(_mockChapterRepository.Object, _mockMapper.Object);
+            // Act
+
+            ChapterResponseModel result = chapterService.Get(chapterId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.That(result.CourseId, Is.EqualTo(courseId));
+            Assert.That(result.Name, Is.EqualTo(chapter.Name));
+        }
 
         [Test]
         public void Get_NonExistingChapterId_ShouldThrowHttpStatusCodeException()
