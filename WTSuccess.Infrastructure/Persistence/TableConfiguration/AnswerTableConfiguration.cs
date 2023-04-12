@@ -15,7 +15,7 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
         {
             builder.ToTable(nameof(Answer));
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.Question).WithMany();
+            builder.HasOne(x => x.Question).WithMany(q => q.Answers);
         }
     }
 }

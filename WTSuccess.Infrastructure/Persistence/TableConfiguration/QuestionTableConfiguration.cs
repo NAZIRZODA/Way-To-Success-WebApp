@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WTSuccess.Domain.Models;
 
@@ -11,7 +10,7 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
         {
             builder.ToTable(nameof(Question));
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.Chapter).WithMany();
+            builder.HasOne(x => x.Chapter).WithMany(ch => ch.Questions);
         }
     }
 }

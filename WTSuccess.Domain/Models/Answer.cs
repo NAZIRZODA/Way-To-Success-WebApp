@@ -5,7 +5,7 @@ namespace WTSuccess.Domain.Models
     {
         public string Text { get; set; }
 
-        public Question Question { get; set; }
+        public virtual Question? Question { get; set; }
 
         public ulong QuestionId { get; set; }
     }

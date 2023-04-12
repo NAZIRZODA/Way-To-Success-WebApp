@@ -1,5 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using System.Xml.Linq;
+using WayToSuccess.API;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Mappers;
@@ -23,6 +25,8 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IChapterService, ChapterService>();
 builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(CreateStudentValidations).Assembly);
@@ -49,5 +53,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MigrateDatabase();
 
 app.Run();
