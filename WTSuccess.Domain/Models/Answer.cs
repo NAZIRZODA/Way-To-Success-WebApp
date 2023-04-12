@@ -8,5 +8,7 @@ namespace WTSuccess.Domain.Models
         public virtual Question? Question { get; set; }
 
         public ulong QuestionId { get; set; }
+
+        public bool isCorrect { get; set; }
     }
 }

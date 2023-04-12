@@ -7,8 +7,6 @@ namespace WTSuccess.Domain.Models
 
         public virtual List<Answer> Answers { get; set; }
 
-        public ulong CorrectAnswerId { get; set; }
-
         public virtual Chapter? Chapter { get; set; }
 
         public ulong ChapterId { get; set; }
