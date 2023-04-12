@@ -20,7 +20,10 @@ namespace WTSuccess.Application.Services
 
         public override void Add(QuestionRequestModel request)
         {
-            base.Add(request);
+            var createQuestionRequestModel = request as CreateQuestionRequestModel;
+            var question = _mapper.Map<CreateQuestionRequestModel, Question>(createQuestionRequestModel);
+            _questionRepository.Add(question);
+            _questionRepository.SaveChanges();
         }
 
         public override QuestionResponseModel Update(ulong id, QuestionRequestModel request)
