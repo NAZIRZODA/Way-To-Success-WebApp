@@ -11,8 +11,8 @@ using WTSuccess.Infrastructure.Persistence.DataBases;
 namespace WTSuccess.Infrastructure.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20230412183425_QuestionAndAnswerEntities")]
-    partial class QuestionAndAnswerEntities
+    [Migration("20230413191811_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,11 +29,11 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("CourseStudent", b =>
                 {
-                    b.Property<decimal>("CoursesId")
-                        .HasColumnType("numeric(20,0)");
+                    b.Property<long>("CoursesId")
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("StudentsId")
-                        .HasColumnType("numeric(20,0)");
+                    b.Property<long>("StudentsId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("CoursesId", "StudentsId");
 
@@ -44,16 +44,21 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Answer", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("QuestionId")
-                        .HasColumnType("numeric(20,0)");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("isCorrect")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -64,12 +69,14 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Chapter", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("CourseId")
-                        .HasColumnType("numeric(20,0)");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -84,9 +91,11 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Course", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -99,15 +108,14 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Question", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("ChapterId")
-                        .HasColumnType("numeric(20,0)");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<decimal>("CorrectAnswerId")
-                        .HasColumnType("numeric(20,0)");
+                    b.Property<long>("ChapterId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -122,9 +130,11 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Student", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -152,15 +162,17 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("QuestionId")
-                        .HasColumnType("numeric(20,0)");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<decimal>("StudentId")
-                        .HasColumnType("numeric(20,0)");
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StudentId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -173,12 +185,14 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Topic", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
 
-                    b.Property<decimal>("ChapterId")
-                        .HasColumnType("numeric(20,0)");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ChapterId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()

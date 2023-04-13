@@ -14,8 +14,8 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
         public void Configure(EntityTypeBuilder<Chapter> builder)
         {
             builder.ToTable(nameof(Chapter));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).ValueGeneratedOnAdd();
             builder.HasOne(c => c.Course).WithMany(c => c.Chapters).HasForeignKey(c => c.CourseId);
         }
     }

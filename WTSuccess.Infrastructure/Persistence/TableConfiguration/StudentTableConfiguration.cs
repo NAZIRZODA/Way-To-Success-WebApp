@@ -14,8 +14,8 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
         public void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.ToTable(nameof(Student));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).UseHiLo();
         }
     }
 }
