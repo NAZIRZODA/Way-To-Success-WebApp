@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Requests.CourseRequests;
+using WTSuccess.Application.Requests.Question;
 using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Requests.TopicRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
 using WTSuccess.Application.Responses.CourseRespnses;
+using WTSuccess.Application.Responses.QuestionResponses;
 using WTSuccess.Application.Responses.StudentRespones;
 using WTSuccess.Application.Responses.TopicResponses;
 using WTSuccess.Domain.Models;
@@ -35,6 +37,10 @@ namespace WTSuccess.Application.Mappers
             CreateMap<TopicRequestModel, Topic>();
             CreateMap<Topic, TopicResponseModel>();
             CreateMap<UpdateTopicRequestModel, Topic>();
+
+            CreateMap<CreateQuestionRequestModel, Question>();
+            CreateMap<UpdateQuestionRequestModel, Question>();
+            CreateMap<Question, QuestionResponseModel>();
         }
     }
 }

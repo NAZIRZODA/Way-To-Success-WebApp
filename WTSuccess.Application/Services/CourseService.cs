@@ -58,7 +58,6 @@ namespace WTSuccess.Application.Services
         {
             var dbCourse = _courseRepository.FindById(id);
             if (dbCourse == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
             var courseRequestToUpdate = request as UpdateCourseRequestModel;
             var result = _mapper.Map(courseRequestToUpdate, dbCourse);
             _courseRepository.Update(dbCourse);
@@ -70,7 +69,6 @@ namespace WTSuccess.Application.Services
         {
             var dbCourse = _courseRepository.FindById(id);
             if (dbCourse == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
             _courseRepository.Delete(dbCourse);
             _courseRepository.SaveChanges();
             return true;
