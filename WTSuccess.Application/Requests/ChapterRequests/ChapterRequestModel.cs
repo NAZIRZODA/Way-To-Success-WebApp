@@ -9,7 +9,6 @@ namespace WTSuccess.Application.Requests.ChapterRequests
 {
     public class ChapterRequestModel : BaseRequest
     {
-        public ulong Id { get; set; }
         public string Name { get; set; }
         public ulong CourseId { get; set; }
         // public List<Student> Students { get; set; }
