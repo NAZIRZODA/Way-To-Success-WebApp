@@ -35,7 +35,6 @@ namespace WTSuccess.UnitTests.Application.Services
 
             // Act
             _chapterService.Add(request);
-
             // Assert
             _mockChapterRepository.Verify(x => x.Add(It.IsAny<Chapter>()), Times.Once);
             _mockChapterRepository.Verify(x => x.SaveChanges(), Times.Once);
@@ -45,7 +44,7 @@ namespace WTSuccess.UnitTests.Application.Services
         public void Add_InvalidRequest_ShouldThrowHttpStatusCodeException()
         {
             // Arrange
-            var request = new UpdateChapterRequestModel { Name = "Chapter 1" };
+            CreateChapterRequestModel request = null;
 
             // Act & Assert
             var ex = Assert.Throws<HttpStatusCodeException>(() => _chapterService.Add(request));
