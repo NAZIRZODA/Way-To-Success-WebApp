@@ -20,9 +20,12 @@ namespace WTSuccess.Application.Services
             _mapper = mapper;
         }
 
-        public virtual void Add(TRequestModel request)
+        public virtual TResponseModel Add(TRequestModel request)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<TRequestModel, TEntity>(request);
+            _repository.Add(entity);
+            _repository.SaveChanges();
+            return _mapper.Map<TEntity, TResponseModel>(entity);
         }
 
         public virtual bool Delete(ulong id)

@@ -23,9 +23,9 @@ namespace WayToSuccess.API.Controllers
         }
 
         [HttpPost]
-        public void Add(CreateQuestionRequestModel questionRequestModel)
+        public QuestionResponseModel Add(CreateQuestionRequestModel questionRequestModel)
         {
-            _questionService.Add(questionRequestModel);
+            return _questionService.Add(questionRequestModel);
         }
 
         [HttpPut("id")]

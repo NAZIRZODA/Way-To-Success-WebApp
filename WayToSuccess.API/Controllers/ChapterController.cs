@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
+using WTSuccess.Application.Responses.QuestionResponses;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,9 +34,9 @@ namespace WTSuccess.API.Controllers
 
         // POST api/<ChapterController>
         [HttpPost]
-        public void Post([FromBody] CreateChapterRequestModel chapter)
+        public ChapterResponseModel Post([FromBody] CreateChapterRequestModel chapter)
         {
-            _chapterService.Add(chapter);
+            return _chapterService.Add(chapter);
         }
 
         // PUT api/<ChapterController>/5

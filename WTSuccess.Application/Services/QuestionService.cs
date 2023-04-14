@@ -1,7 +1,9 @@
 ﻿
 using AutoMapper;
+using System.Net;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests.Question;
 using WTSuccess.Application.Responses.QuestionResponses;
 using WTSuccess.Domain.Models;
@@ -11,19 +13,28 @@ namespace WTSuccess.Application.Services
     public class QuestionService : BaseService<Question, QuestionResponseModel, QuestionRequestModel>, IQuestionService
     {
         private readonly IQuestionRepository _questionRepository;
+        private readonly IChapterRepository _chapterRepository;
         private readonly IMapper _mapper;
-        public QuestionService(IQuestionRepository questionRepository, IMapper mapper) : base(questionRepository, mapper)
+        public QuestionService(IQuestionRepository questionRepository,  IMapper mapper, IChapterRepository chapterRepository) : base(questionRepository, mapper)
         {
             _questionRepository = questionRepository;
             _mapper = mapper;
+            _chapterRepository = chapterRepository;
         }
 
-        public override void Add(QuestionRequestModel request)
+        public override QuestionResponseModel Add(QuestionRequestModel request)
         {
             var createQuestionRequestModel = request as CreateQuestionRequestModel;
-            var question = _mapper.Map<CreateQuestionRequestModel, Question>(createQuestionRequestModel);
-            _questionRepository.Add(question);
-            _questionRepository.SaveChanges();
+            if (createQuestionRequestModel == null) 
+                throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Couldn't cast request to create question request");
+
+            var chapter = _chapterRepository.FindById(createQuestionRequestModel.ChapterId);
+            if (chapter == null) 
+                throw new HttpStatusCodeException(HttpStatusCode.NotFound, $"Chapter with id: {createQuestionRequestModel.ChapterId} not found");
+
+            if (createQuestionRequestModel.Answers.Count == 0 || createQuestionRequestModel.Answers.FirstOrDefault(a => a.isCorrect) == null)
+                throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Question should have even 1 correct answer");
+            return base.Add(request); 
         }
 
         public override QuestionResponseModel Update(ulong id, QuestionRequestModel request)

@@ -16,7 +16,7 @@ namespace WTSuccess.Application.Common.Interfaces
     {
         IEnumerable<TResponseModel> GetAll(int pageList, int pageNumber);
         TResponseModel Get(ulong id);
-        void Add(TRequestModel request);
+        TResponseModel Add(TRequestModel request);
         TResponseModel Update(ulong id, TRequestModel request);
         bool Delete(ulong id);
     }

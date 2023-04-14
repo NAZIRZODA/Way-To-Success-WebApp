@@ -21,14 +21,11 @@ namespace WTSuccess.Application.Services
             _mapper = mapper;
         }
 
-        public override void Add(StudentRequestModel request)
+        public override StudentResponseModel Add(StudentRequestModel request)
         {
             var parsedToCreate = request as CreateStudentRequestModel;
             if (parsedToCreate == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToStudent = _mapper.Map<CreateStudentRequestModel, Student>(parsedToCreate);
-            _studentRepository.Add(mappedToStudent);
-            _studentRepository.SaveChanges();
+            return base.Add(request);
         }
 
         public override StudentResponseModel Get(ulong id)

@@ -24,9 +24,9 @@ namespace WTSuccess.API.Controllers
         }
 
         [HttpPost]
-        public void Add(CreateStudentRequestModel student)
+        public StudentResponseModel Add(CreateStudentRequestModel student)
         {
-            _studentService.Add(student);
+            return _studentService.Add(student);
         }
 
         [HttpPost("AddCourse")]

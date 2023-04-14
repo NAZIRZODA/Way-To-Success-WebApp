@@ -29,11 +29,9 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
             _set.Remove(entity);
         }
 
-        public TEntity FindById(ulong id)
+        public TEntity? FindById(ulong id)
         {
-            var foundEntity = _set.Find(id);
-            if (foundEntity == null) throw new ArgumentNullException(nameof(foundEntity));
-            return foundEntity;
+            return _set.Find(id);
         }
 
 

@@ -25,14 +25,11 @@ namespace WTSuccess.Application.Services
             _mapper = mapper;
         }
 
-        public override void Add(TopicRequestModel request)
+        public override TopicResponseModel Add(TopicRequestModel request)
         {
             var parsedToCreate = request as CreateTopicRequestModel;
             if (parsedToCreate == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToTopic = _mapper.Map<CreateTopicRequestModel, Topic>(parsedToCreate);
-            _topicRepository.Add(mappedToTopic);
-            _topicRepository.SaveChanges();
+            return base.Add(request);
         }
 
         public override TopicResponseModel Update(ulong id, TopicRequestModel request)

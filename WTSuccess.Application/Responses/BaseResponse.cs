@@ -8,6 +8,6 @@ namespace WTSuccess.Application.Responses
 {
     public abstract class BaseResponse
     {
-
+        public ulong id { get; set; }
     }
 }

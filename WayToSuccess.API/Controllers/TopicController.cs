@@ -16,9 +16,9 @@ namespace WTSuccess.API.Controllers
         }
 
         [HttpPost]
-        public void Add(CreateTopicRequestModel topic)
+        public TopicResponseModel Add(CreateTopicRequestModel topic)
         {
-            _topicService.Add(topic);
+            return _topicService.Add(topic);
         }
 
         [HttpPut("{id}")]

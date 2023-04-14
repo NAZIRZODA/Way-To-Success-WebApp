@@ -1,10 +1,10 @@
 ﻿
 namespace WTSuccess.Application.Responses.QuestionResponses
 {
-    public class AnswerResponseModel
+    public class AnswerResponseModel: BaseResponse
     {
-        public ulong Id { get; set; }
-
         public string Text { get; set; }
+
+        public bool isCorrect { get; set; }
     }
 }

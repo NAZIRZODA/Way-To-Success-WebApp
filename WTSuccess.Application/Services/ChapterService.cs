@@ -27,14 +27,11 @@ namespace WTSuccess.Application.Services
             _mapper = mapper;
         }
 
-        public override void Add(ChapterRequestModel request)
+        public override ChapterResponseModel Add(ChapterRequestModel request)
         {
             var parsedToCreate = request as CreateChapterRequestModel;
             if (parsedToCreate == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToChapter = _mapper.Map<CreateChapterRequestModel, Chapter>(parsedToCreate);
-            _chapterRepository.Add(mappedToChapter);
-            _chapterRepository.SaveChanges();
+            return base.Add(request);
         }
 
         public override ChapterResponseModel Get(ulong id)

@@ -28,14 +28,11 @@ namespace WTSuccess.Application.Services
             _mapper = mapper;
         }
 
-        public override void Add(CourseRequestModel request)
+        public override CourseResponseModel Add(CourseRequestModel request)
         {
             var parsedToCreate = request as CreateCourseRequestModel;
             if (parsedToCreate == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToChapter = _mapper.Map<CreateCourseRequestModel, Course>(parsedToCreate);
-            _courseRepository.Add(mappedToChapter);
-            _courseRepository.SaveChanges();
+            return base.Add(request);
         }
 
         public override CourseResponseModel Get(ulong id)

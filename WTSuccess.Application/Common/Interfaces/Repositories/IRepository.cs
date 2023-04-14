@@ -9,7 +9,7 @@ namespace WTSuccess.Application.Common.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity : EntityBase
     {
-        TEntity FindById(ulong id);
+        TEntity? FindById(ulong id);
         IQueryable<TEntity> GetAll(int pageList, int pageNumber);
         void Add(TEntity entity);
         void Update(TEntity entity);
