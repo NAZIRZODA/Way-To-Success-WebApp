@@ -29,7 +29,7 @@ namespace WTSuccess.Application.Tests.CourseTests
         {
             UpdateCourseRequestModel updateCourseRequestModel = new UpdateCourseRequestModel()
             {
-                Id = 1,
+                
                 Name = "PHP"
             };
             Course course = new Course()

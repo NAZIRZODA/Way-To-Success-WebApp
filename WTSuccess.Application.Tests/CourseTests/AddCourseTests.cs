@@ -48,7 +48,7 @@ namespace WTSuccess.Application.Tests.CourseTests
         public void Exception_When_Name_is_longer_than18()
         {
             var requestCourse = new CreateCourseRequestModel()
-            { Id = 1, Name = "C# is object oriented programming" };
+            { Name = "C# is object oriented programming" };
             var result = _courseValidation.TestValidate(requestCourse);
             result.ShouldHaveValidationErrorFor(n => n.Name);
         }
