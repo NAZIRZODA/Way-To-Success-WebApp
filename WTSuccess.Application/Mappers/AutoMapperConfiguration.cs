@@ -39,9 +39,11 @@ namespace WTSuccess.Application.Mappers
             CreateMap<UpdateTopicRequestModel, Topic>();
 
             CreateMap<CreateQuestionRequestModel, Question>();
-            CreateMap<UpdateQuestionRequestModel, Question>();
             CreateMap<Question, QuestionResponseModel>();
+            CreateMap<UpdateQuestionRequestModel, Question>();
+
             CreateMap<CreateAnswerRequestModel, Answer>();
+            CreateMap<Answer, AnswerResponseModel>();
         }
     }
 }
