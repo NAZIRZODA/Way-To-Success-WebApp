@@ -9,7 +9,7 @@ namespace WTSuccess.Domain.Models
         public ulong StudentId { get; set; }
 
         public virtual Question Question { get; set; }
-
+        public Answer StudentAnswer { get; set; }
         public ulong QuestionId { get; set; }
     }
 

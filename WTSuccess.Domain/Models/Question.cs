@@ -1,5 +1,4 @@
-﻿
-namespace WTSuccess.Domain.Models
+﻿namespace WTSuccess.Domain.Models
 {
     public class Question: EntityBase
     {
