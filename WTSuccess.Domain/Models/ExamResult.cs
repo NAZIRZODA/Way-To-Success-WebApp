@@ -12,8 +12,6 @@ namespace WTSuccess.Domain.Models
 
         public ulong StudenExamId { get; set; }
 
-        public virtual Answer Answer { get; set; }
-
         public ulong AnswerId { get; set; }
 
         public bool IsTrue { get; set; }
