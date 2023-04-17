@@ -157,6 +157,33 @@ namespace WTSuccess.Infrastructure.Migrations
                     b.ToTable("Student", (string)null);
                 });
 
+            modelBuilder.Entity("WTSuccess.Domain.Models.StudentAnswer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<decimal>("AnswerId")
+                        .HasColumnType("numeric(20,0)");
+
+                    b.Property<bool>("IsTrue")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal>("QuestionId")
+                        .HasColumnType("numeric(20,0)");
+
+                    b.Property<long>("StudenExamId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudenExamId");
+
+                    b.ToTable("StudentAnswer", (string)null);
+                });
+
             modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
                 {
                     b.Property<long>("Id")
@@ -165,17 +192,15 @@ namespace WTSuccess.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("QuestionId")
+                    b.Property<long>("ChapterId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("StudentId")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("StudentId")
+                        .HasColumnType("numeric(20,0)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
-
-                    b.HasIndex("StudentId");
+                    b.HasIndex("ChapterId");
 
                     b.ToTable("StudentExam", (string)null);
                 });
@@ -254,23 +279,26 @@ namespace WTSuccess.Infrastructure.Migrations
                     b.Navigation("Chapter");
                 });
 
+            modelBuilder.Entity("WTSuccess.Domain.Models.StudentAnswer", b =>
+                {
+                    b.HasOne("WTSuccess.Domain.Models.StudentExam", "StudentExam")
+                        .WithMany("StudentAnswers")
+                        .HasForeignKey("StudenExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StudentExam");
+                });
+
             modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
                 {
-                    b.HasOne("WTSuccess.Domain.Models.Question", "Question")
+                    b.HasOne("WTSuccess.Domain.Models.Chapter", "Chapter")
                         .WithMany()
-                        .HasForeignKey("QuestionId")
+                        .HasForeignKey("ChapterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WTSuccess.Domain.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-
-                    b.Navigation("Student");
+                    b.Navigation("Chapter");
                 });
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Topic", b =>
@@ -299,6 +327,11 @@ namespace WTSuccess.Infrastructure.Migrations
             modelBuilder.Entity("WTSuccess.Domain.Models.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
+                {
+                    b.Navigation("StudentAnswers");
                 });
 #pragma warning restore 612, 618
         }

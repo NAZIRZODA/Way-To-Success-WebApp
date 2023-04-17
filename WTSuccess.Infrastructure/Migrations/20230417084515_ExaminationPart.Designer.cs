@@ -11,8 +11,8 @@ using WTSuccess.Infrastructure.Persistence.DataBases;
 namespace WTSuccess.Infrastructure.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20230413210809_CreateInitial")]
-    partial class CreateInitial
+    [Migration("20230417084515_ExaminationPart")]
+    partial class ExaminationPart
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,6 +160,33 @@ namespace WTSuccess.Infrastructure.Migrations
                     b.ToTable("Student", (string)null);
                 });
 
+            modelBuilder.Entity("WTSuccess.Domain.Models.StudentAnswer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<decimal>("AnswerId")
+                        .HasColumnType("numeric(20,0)");
+
+                    b.Property<bool>("IsTrue")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal>("QuestionId")
+                        .HasColumnType("numeric(20,0)");
+
+                    b.Property<long>("StudenExamId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudenExamId");
+
+                    b.ToTable("StudentAnswer", (string)null);
+                });
+
             modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
                 {
                     b.Property<long>("Id")
@@ -168,17 +195,13 @@ namespace WTSuccess.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("QuestionId")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("ChapterId")
+                        .HasColumnType("numeric(20,0)");
 
-                    b.Property<long>("StudentId")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("StudentId")
+                        .HasColumnType("numeric(20,0)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("StudentExam", (string)null);
                 });
@@ -257,23 +280,15 @@ namespace WTSuccess.Infrastructure.Migrations
                     b.Navigation("Chapter");
                 });
 
-            modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
+            modelBuilder.Entity("WTSuccess.Domain.Models.StudentAnswer", b =>
                 {
-                    b.HasOne("WTSuccess.Domain.Models.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
+                    b.HasOne("WTSuccess.Domain.Models.StudentExam", "StudentExam")
+                        .WithMany("StudentAnswers")
+                        .HasForeignKey("StudenExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WTSuccess.Domain.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Question");
-
-                    b.Navigation("Student");
+                    b.Navigation("StudentExam");
                 });
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Topic", b =>
@@ -302,6 +317,11 @@ namespace WTSuccess.Infrastructure.Migrations
             modelBuilder.Entity("WTSuccess.Domain.Models.Question", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("WTSuccess.Domain.Models.StudentExam", b =>
+                {
+                    b.Navigation("StudentAnswers");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Requests.CourseRequests;
 using WTSuccess.Application.Requests.Question;
+using WTSuccess.Application.Requests.StudentExamRequests;
 using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Requests.TopicRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
 using WTSuccess.Application.Responses.CourseRespnses;
 using WTSuccess.Application.Responses.QuestionResponses;
+using WTSuccess.Application.Responses.StudentExamRespones;
 using WTSuccess.Application.Responses.StudentRespones;
 using WTSuccess.Application.Responses.TopicResponses;
 using WTSuccess.Domain.Models;
@@ -44,6 +46,10 @@ namespace WTSuccess.Application.Mappers
 
             CreateMap<CreateAnswerRequestModel, Answer>();
             CreateMap<Answer, AnswerResponseModel>();
+
+            CreateMap<CreateStudentExamRequestModel, StudentExam>();
+            CreateMap<StudentExam, StudentExamResponseModel>();
+            CreateMap<UpdateStudentExamRequestModel, StudentExam>();
         }
     }
 }

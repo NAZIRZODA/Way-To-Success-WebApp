@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WTSuccess.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class ExaminationPart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,6 +39,20 @@ namespace WTSuccess.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Student", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentExam",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    StudentId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
+                    ChapterId = table.Column<decimal>(type: "numeric(20,0)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentExam", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,6 +95,28 @@ namespace WTSuccess.Infrastructure.Migrations
                         name: "FK_CourseStudent_Student_StudentsId",
                         column: x => x.StudentsId,
                         principalTable: "Student",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentAnswer",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    StudenExamId = table.Column<long>(type: "bigint", nullable: false),
+                    QuestionId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
+                    AnswerId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
+                    IsTrue = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentAnswer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentAnswer_StudentExam_StudenExamId",
+                        column: x => x.StudenExamId,
+                        principalTable: "StudentExam",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -147,32 +183,6 @@ namespace WTSuccess.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "StudentExam",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StudentId = table.Column<long>(type: "bigint", nullable: false),
-                    QuestionId = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentExam", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StudentExam_Question_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Question",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_StudentExam_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Answer_QuestionId",
                 table: "Answer",
@@ -194,14 +204,9 @@ namespace WTSuccess.Infrastructure.Migrations
                 column: "ChapterId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentExam_QuestionId",
-                table: "StudentExam",
-                column: "QuestionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentExam_StudentId",
-                table: "StudentExam",
-                column: "StudentId");
+                name: "IX_StudentAnswer_StudenExamId",
+                table: "StudentAnswer",
+                column: "StudenExamId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Topic_ChapterId",
@@ -219,7 +224,7 @@ namespace WTSuccess.Infrastructure.Migrations
                 name: "CourseStudent");
 
             migrationBuilder.DropTable(
-                name: "StudentExam");
+                name: "StudentAnswer");
 
             migrationBuilder.DropTable(
                 name: "Topic");
@@ -229,6 +234,9 @@ namespace WTSuccess.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "StudentExam");
 
             migrationBuilder.DropTable(
                 name: "Chapter");

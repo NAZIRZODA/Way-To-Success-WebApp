@@ -27,7 +27,8 @@ builder.Services.AddScoped<IChapterService, ChapterService>();
 builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
-
+builder.Services.AddScoped<IStudentExamRepository, StudentExamRepository>();
+builder.Services.AddScoped<IStudentExamService, StudentExamService>();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(CreateStudentValidations).Assembly);
 
