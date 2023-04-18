@@ -51,6 +51,8 @@ namespace WTSuccess.API.Controllers
         public IEnumerable<StudentResponseModel> GetAll(int pageList, int pageNumber)
         {
             return _studentService.GetAll(pageList, pageNumber);
+        
+        
         }
     }
 }

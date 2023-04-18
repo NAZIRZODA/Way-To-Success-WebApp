@@ -8,6 +8,7 @@ namespace WTSuccess.Application.Requests.StudentAnswerRequests
 {
     public abstract class StudentAnswerRequestModel : BaseRequest
     {
+        public ulong StudenExamId { get; set; }
         public ulong QuestionId { get; set; }
         public ulong AnswerId { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WTSuccess.Application.Common.Interfaces;
+using WTSuccess.Application.Requests.StudentAnswerRequests;
 using WTSuccess.Application.Requests.StudentExamRequests;
 using WTSuccess.Application.Responses.QuestionResponses;
 using WTSuccess.Domain.Models;
@@ -13,7 +14,6 @@ namespace WayToSuccess.API.Controllers
     public class StudentExamController : ControllerBase
     {
         private readonly IStudentExamService _studentExamService;
-
         public StudentExamController(IStudentExamService studentExamService)
         {
             _studentExamService = studentExamService;
@@ -25,30 +25,12 @@ namespace WayToSuccess.API.Controllers
             return _studentExamService.GetQuestions(studentExamId);
         }
 
-        // GET api/<StudentExamController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<StudentExamController>
         [HttpPost]
         public void Post([FromBody] CreateStudentExamRequestModel studentExamRequest)
         {
             _studentExamService.Add(studentExamRequest);
-        }
-
-        // PUT api/<StudentExamController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<StudentExamController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
