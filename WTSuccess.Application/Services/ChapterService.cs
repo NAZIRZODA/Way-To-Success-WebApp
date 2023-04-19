@@ -34,15 +34,6 @@ namespace WTSuccess.Application.Services
             return base.Add(request);
         }
 
-        public override ChapterResponseModel Get(ulong id)
-        {
-            var dbChapter = _chapterRepository.FindById(id);
-            if (dbChapter == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToResponse = _mapper.Map<Chapter, ChapterResponseModel>(dbChapter);
-            return mappedToResponse;
-        }
-
         public override IEnumerable<ChapterResponseModel> GetAll(int pageList, int pageNumber)
         {
             var dbChapter = _chapterRepository.GetAll(pageList, pageNumber);
@@ -60,16 +51,6 @@ namespace WTSuccess.Application.Services
             _chapterRepository.Update(dbChapter);
             _chapterRepository.SaveChanges();
             return _mapper.Map<Chapter, ChapterResponseModel>(dbChapter);
-        }
-
-        public override bool Delete(ulong id)
-        {
-            var dbChapter = _chapterRepository.FindById(id);
-            if (dbChapter == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            _chapterRepository.Delete(dbChapter);
-            _chapterRepository.SaveChanges();
-            return true;
         }
     }
 }

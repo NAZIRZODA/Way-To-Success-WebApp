@@ -28,15 +28,6 @@ namespace WTSuccess.Application.Services
             return base.Add(request);
         }
 
-        public override StudentResponseModel Get(ulong id)
-        {
-            var dbStudent = _studentRepository.FindById(id);
-            if (dbStudent == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToResponse = _mapper.Map<Student, StudentResponseModel>(dbStudent);
-            return mappedToResponse;
-        }
-
         public override IEnumerable<StudentResponseModel> GetAll(int pageList, int pageNumber)
         {
             var dbStudents = _studentRepository.GetAll(pageList, pageNumber);
@@ -54,16 +45,6 @@ namespace WTSuccess.Application.Services
             _studentRepository.Update(entity);
             _studentRepository.SaveChanges();
             return _mapper.Map<Student, StudentResponseModel>(entity);
-        }
-
-        public override bool Delete(ulong id)
-        {
-            var dbStudent = _studentRepository.FindById(id);
-            if (dbStudent == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            _studentRepository.Delete(dbStudent);
-            _studentRepository.SaveChanges();
-            return true;
         }
 
         public void AddCourse(ulong courseId, ulong studentId)

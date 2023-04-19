@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using System.Net;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
+using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests;
 using WTSuccess.Application.Responses;
 using WTSuccess.Domain.Models;
@@ -30,12 +32,22 @@ namespace WTSuccess.Application.Services
 
         public virtual bool Delete(ulong id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.FindById(id);
+            if (entity == null) 
+                throw new HttpStatusCodeException(HttpStatusCode.NotFound, $"{nameof(TEntity)} not found");
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+            return true;
         }
 
         public virtual TResponseModel Get(ulong id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.FindById(id);
+            if (entity == null)
+                throw new HttpStatusCodeException(HttpStatusCode.NotFound, $"{nameof(TEntity)} not found");
+
+            return _mapper.Map<TEntity, TResponseModel>(entity);
         }
 
         public virtual IEnumerable<TResponseModel> GetAll(int pageList, int pageNumber)

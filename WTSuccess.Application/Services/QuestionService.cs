@@ -42,19 +42,9 @@ namespace WTSuccess.Application.Services
             return base.Update(id, request);
         }
 
-        public override QuestionResponseModel Get(ulong id)
-        {
-            return base.Get(id);
-        }
-
         public override IEnumerable<QuestionResponseModel> GetAll(int pageList, int pageNumber)
         {
             return base.GetAll(pageList, pageNumber);
-        }
-
-        public override bool Delete(ulong id)
-        {
-            return base.Delete(id);
         }
     }
 }

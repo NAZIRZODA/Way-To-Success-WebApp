@@ -44,30 +44,11 @@ namespace WTSuccess.Application.Services
             return _mapper.Map<Topic, TopicResponseModel>(dbTopic);
         }
 
-        public override TopicResponseModel Get(ulong id)
-        {
-            var dbTopic = _topicRepository.FindById(id);
-            if (dbTopic == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            var mappedToResponse = _mapper.Map<Topic, TopicResponseModel>(dbTopic);
-            return mappedToResponse;
-        }
-
         public override IEnumerable<TopicResponseModel> GetAll(int pageList, int pageNumber)
         {
             var dbTopics = _topicRepository.GetAll(pageList, pageNumber);
             var mappedToRespones = _mapper.Map<IEnumerable<Topic>, IEnumerable<TopicResponseModel>>(dbTopics);
             return mappedToRespones;
-        }
-
-        public override bool Delete(ulong id)
-        {
-            var dbTopic = _topicRepository.FindById(id);
-            if (dbTopic == null) throw new HttpStatusCodeException(HttpStatusCode.NotFound, nameof(Student));
-
-            _topicRepository.Delete(dbTopic);
-            _topicRepository.SaveChanges();
-            return true;
         }
     }
 }
