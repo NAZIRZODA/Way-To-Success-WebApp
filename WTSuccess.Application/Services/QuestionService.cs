@@ -13,7 +13,6 @@ namespace WTSuccess.Application.Services
     public class QuestionService : BaseService<Question, QuestionResponseModel, QuestionRequestModel>, IQuestionService
     {
         private readonly IChapterRepository _chapterRepository;
-        private readonly IMapper _mapper;
         public QuestionService(IQuestionRepository questionRepository,  IMapper mapper, IChapterRepository chapterRepository) : base(questionRepository, mapper)
         {
             _mapper = mapper;
