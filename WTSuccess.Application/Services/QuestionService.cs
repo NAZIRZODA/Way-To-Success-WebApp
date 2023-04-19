@@ -15,7 +15,6 @@ namespace WTSuccess.Application.Services
         private readonly IChapterRepository _chapterRepository;
         public QuestionService(IQuestionRepository questionRepository,  IMapper mapper, IChapterRepository chapterRepository) : base(questionRepository, mapper)
         {
-            _mapper = mapper;
             _chapterRepository = chapterRepository;
         }
 
