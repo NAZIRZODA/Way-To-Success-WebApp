@@ -12,12 +12,10 @@ namespace WTSuccess.Application.Services
 {
     public class QuestionService : BaseService<Question, QuestionResponseModel, QuestionRequestModel>, IQuestionService
     {
-        private readonly IQuestionRepository _questionRepository;
         private readonly IChapterRepository _chapterRepository;
         private readonly IMapper _mapper;
         public QuestionService(IQuestionRepository questionRepository,  IMapper mapper, IChapterRepository chapterRepository) : base(questionRepository, mapper)
         {
-            _questionRepository = questionRepository;
             _mapper = mapper;
             _chapterRepository = chapterRepository;
         }
