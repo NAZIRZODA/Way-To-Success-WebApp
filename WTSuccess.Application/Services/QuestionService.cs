@@ -39,6 +39,10 @@ namespace WTSuccess.Application.Services
 
         public override QuestionResponseModel Update(ulong id, QuestionRequestModel request)
         {
+            var chapter = _chapterRepository.FindById(request.ChapterId);
+            if (chapter == null)
+                throw new HttpStatusCodeException(HttpStatusCode.NotFound, $"Chapter with id: {request.ChapterId} not found");
+
             return base.Update(id, request);
         }
 
