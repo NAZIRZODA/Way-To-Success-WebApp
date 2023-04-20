@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WTSuccess.Application.Requests.ExamRequests
+namespace WTSuccess.Application.Responses.GamePlayerResponses
 {
-    public class CreateExamRequestModel : ExamRequestModel
+    public class GamePlayerResponseModel : BaseResponse
     {
-
     }
 }

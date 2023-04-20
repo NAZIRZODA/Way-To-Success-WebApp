@@ -10,7 +10,7 @@ using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Requests.CourseRequests;
 using WTSuccess.Application.Responses.CourseRespnses;
 using WTSuccess.Application.Services;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Application.Tests.CourseTests
 {

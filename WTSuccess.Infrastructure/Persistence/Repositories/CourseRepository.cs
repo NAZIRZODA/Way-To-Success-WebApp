@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces.Repositories;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 using WTSuccess.Infrastructure.Persistence.DataBases;
 
 namespace WTSuccess.Infrastructure.Persistence.Repositories

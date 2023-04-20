@@ -13,6 +13,7 @@ using WTSuccess.Application.Requests.StudentRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
 using WTSuccess.Application.Responses.StudentRespones;
 using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Application.Services
 {

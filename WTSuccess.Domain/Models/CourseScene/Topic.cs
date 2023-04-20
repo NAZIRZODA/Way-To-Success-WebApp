@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WTSuccess.Domain.Models
+namespace WTSuccess.Domain.Models.CourseScene
 {
     public class Topic : EntityBase
     {

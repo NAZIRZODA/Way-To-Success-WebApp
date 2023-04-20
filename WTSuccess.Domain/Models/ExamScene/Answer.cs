@@ -1,7 +1,6 @@
-﻿
-namespace WTSuccess.Domain.Models
+﻿namespace WTSuccess.Domain.Models.ExamScene
 {
-    public class Answer: EntityBase
+    public class Answer : EntityBase
     {
         public string Text { get; set; }
 

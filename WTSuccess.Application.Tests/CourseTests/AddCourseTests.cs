@@ -11,7 +11,7 @@ using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Requests.CourseRequests;
 using WTSuccess.Application.Services;
 using WTSuccess.Application.Validations.CourseValidations;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Application.Tests.CourseTests
 {

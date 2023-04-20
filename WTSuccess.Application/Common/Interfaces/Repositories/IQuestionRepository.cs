@@ -1,5 +1,4 @@
-﻿
-using WTSuccess.Domain.Models;
+﻿using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Common.Interfaces.Repositories
 {

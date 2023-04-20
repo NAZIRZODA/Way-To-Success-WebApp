@@ -10,7 +10,7 @@ using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests.StudentAnswerRequests;
 using WTSuccess.Application.Responses.StudentAnswerResponses;
 using WTSuccess.Application.Responses.StudentExamRespones;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Services
 {
@@ -25,13 +25,15 @@ namespace WTSuccess.Application.Services
             _studentAnswerRepository = repository;
             _mapper = mapper;
             _answerRepository = answerRepository;
+
         }
 
         public override void Add(StudentAnswerRequestModel request)
         {
             var entity = request as CreateStudentAnswerRequestModel;
+            var questionIsExist = _studentAnswerRepository.CheckForDuplicateAnswers(entity);
 
-            if (ControlOfRepeatAnswerWithQuestion(entity)) throw new Exception("Already you answered this q");
+            if (questionIsExist) throw new Exception("Already you answered this question");
 
             var mappedToStudentAnswer = _mapper.Map<CreateStudentAnswerRequestModel, StudentAnswer>(entity);
             if (TestIsChecked(entity.AnswerId)) mappedToStudentAnswer.IsTrue = true;
@@ -49,11 +51,6 @@ namespace WTSuccess.Application.Services
             if (answer.isCorrect) return true;
 
             return false;
-        }
-
-        public bool ControlOfRepeatAnswerWithQuestion(CreateStudentAnswerRequestModel createStudentAnswerRequestModel)
-        {
-            return _studentAnswerRepository.CheckForDuplicateAnswers(createStudentAnswerRequestModel);
         }
 
     }

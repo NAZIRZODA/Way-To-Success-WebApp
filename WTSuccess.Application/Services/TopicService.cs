@@ -11,6 +11,7 @@ using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests.TopicRequests;
 using WTSuccess.Application.Responses.TopicResponses;
 using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Application.Services
 {

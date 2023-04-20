@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Requests.StudentAnswerRequests;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 using WTSuccess.Infrastructure.Persistence.DataBases;
 
 namespace WTSuccess.Infrastructure.Persistence.Repositories
@@ -23,11 +25,11 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
 
         public bool CheckForDuplicateAnswers(CreateStudentAnswerRequestModel createStudentAnswerRequestModel)
         {
-            var result = _dbStudentAnswer.Where(i => i.AnswerId == createStudentAnswerRequestModel.AnswerId
+            var result = _dbStudentAnswer.FirstOrDefault(i => i.AnswerId == createStudentAnswerRequestModel.AnswerId
             && i.StudenExamId == createStudentAnswerRequestModel.StudenExamId
             && i.QuestionId == createStudentAnswerRequestModel.QuestionId);
 
-            if (result == null) return false;
+            if (result == null || System.DBNull.Value==null) return false;
 
             return true;
         }

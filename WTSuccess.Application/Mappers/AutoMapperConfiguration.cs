@@ -19,6 +19,8 @@ using WTSuccess.Application.Responses.StudentExamRespones;
 using WTSuccess.Application.Responses.StudentRespones;
 using WTSuccess.Application.Responses.TopicResponses;
 using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
+using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Mappers
 {

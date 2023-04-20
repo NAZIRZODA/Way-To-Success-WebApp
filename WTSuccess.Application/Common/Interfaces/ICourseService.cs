@@ -7,7 +7,7 @@ using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Requests.CourseRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
 using WTSuccess.Application.Responses.CourseRespnses;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Application.Common.Interfaces
 {

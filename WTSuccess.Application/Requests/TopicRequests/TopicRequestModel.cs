@@ -7,7 +7,7 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Requests.TopicRequests
 {
-    public class TopicRequestModel : BaseRequest
+    public abstract class TopicRequestModel : BaseRequest
     {
         public string Name { get; set; }
         public string Teory { get; set; }

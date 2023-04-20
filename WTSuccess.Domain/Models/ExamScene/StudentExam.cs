@@ -1,4 +1,6 @@
-﻿namespace WTSuccess.Domain.Models
+﻿using WTSuccess.Domain.Models.CourseScene;
+
+namespace WTSuccess.Domain.Models.ExamScene
 {
     public class StudentExam : EntityBase
     {

@@ -5,7 +5,7 @@ using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Exceptions;
 using WTSuccess.Application.Requests.Question;
 using WTSuccess.Application.Responses.QuestionResponses;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Services
 {

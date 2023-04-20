@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Application.Common.Interfaces
 {

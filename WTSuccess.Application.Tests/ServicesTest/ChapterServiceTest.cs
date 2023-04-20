@@ -7,6 +7,7 @@ using WTSuccess.Application.Requests.ChapterRequests;
 using WTSuccess.Application.Responses.ChapterRespones;
 using WTSuccess.Application.Services;
 using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 using Assert = NUnit.Framework.Assert;
 
 namespace WTSuccess.UnitTests.Application.Services

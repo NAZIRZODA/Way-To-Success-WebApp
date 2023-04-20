@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WTSuccess.Application.Requests.StudentExamRequests;
 using WTSuccess.Application.Responses.QuestionResponses;
 using WTSuccess.Application.Responses.StudentExamRespones;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Common.Interfaces
 {
