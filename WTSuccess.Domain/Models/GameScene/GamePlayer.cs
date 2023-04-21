@@ -11,5 +11,6 @@ namespace WTSuccess.Domain.Models.GameScene
         public ulong FirstStudentId { get; set; }
         public ulong SecondStudentId { get; set; }
         public ulong WinnerStudentId { get; set; }
+        public virtual List<Game>? Games { get; set; }
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WTSuccess.Domain.Models.GameScene
+namespace WTSuccess.Application.Requests.GameQuestionRequests
 {
-    public class GameQuestionAnswer : EntityBase
+    public class CreateGameQuestionAnswerRequestModel : BaseRequest
     {
-        public virtual GameQuestion? GameQuestion { get; set; }
         public ulong GameQuestionId { get; set; }
         public string Text { get; set; }
         public bool IsCorrect { get; set; }

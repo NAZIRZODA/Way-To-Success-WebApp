@@ -11,6 +11,6 @@ namespace WTSuccess.Application.Responses.GameQuestionResponses
     {
         public ulong Level { get; set; }
         public string Question { get; set; }
-        public List<GameQuestionAnswer> QuestionAnswer { get; set; }
+        public List<GameQuestionAnswerResponseModel> QuestionAnswer { get; set; }
     }
 }

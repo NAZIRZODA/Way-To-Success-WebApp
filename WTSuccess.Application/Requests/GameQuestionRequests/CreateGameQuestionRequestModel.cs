@@ -8,5 +8,6 @@ namespace WTSuccess.Application.Requests.GameQuestionRequests
 {
     public class CreateGameQuestionRequestModel : GameQuestionRequestModel
     {
+
     }
 }

@@ -11,6 +11,6 @@ namespace WTSuccess.Application.Requests.GameQuestionRequests
     {
         public ulong Level { get; set; }
         public string Question { get; set; }
-        public List<GameQuestionAnswer> QuestionAnswer { get; set; }
+        public List<CreateGameQuestionAnswerRequestModel> QuestionAnswer { get; set; }
     }
 }
