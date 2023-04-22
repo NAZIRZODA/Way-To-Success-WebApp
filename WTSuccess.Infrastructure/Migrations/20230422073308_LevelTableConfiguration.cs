@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WTSuccess.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateInitial : Migration
+    public partial class LevelTableConfiguration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,7 +43,8 @@ namespace WTSuccess.Infrastructure.Migrations
                 name: "Level",
                 columns: table => new
                 {
-                    Id = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     LevelWithNumber = table.Column<decimal>(type: "numeric(20,0)", nullable: false)
                 },
                 constraints: table =>
@@ -117,7 +118,7 @@ namespace WTSuccess.Infrastructure.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    LevelWithNumberId = table.Column<decimal>(type: "numeric(20,0)", nullable: false),
+                    LevelWithNumberId = table.Column<long>(type: "bigint", nullable: false),
                     Question = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -303,8 +304,7 @@ namespace WTSuccess.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_GameQuestion_LevelWithNumberId",
                 table: "GameQuestion",
-                column: "LevelWithNumberId",
-                unique: true);
+                column: "LevelWithNumberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameQuestionAnswer_GameQuestionId",

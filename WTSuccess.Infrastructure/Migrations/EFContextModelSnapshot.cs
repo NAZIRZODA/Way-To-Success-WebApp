@@ -259,8 +259,8 @@ namespace WTSuccess.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<decimal>("LevelWithNumberId")
-                        .HasColumnType("numeric(20,0)");
+                    b.Property<long>("LevelWithNumberId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Question")
                         .IsRequired()
@@ -268,8 +268,7 @@ namespace WTSuccess.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LevelWithNumberId")
-                        .IsUnique();
+                    b.HasIndex("LevelWithNumberId");
 
                     b.ToTable("GameQuestion", (string)null);
                 });
@@ -301,16 +300,18 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.GameScene.Level", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("numeric(20,0)");
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<decimal>("LevelWithNumber")
                         .HasColumnType("numeric(20,0)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Level");
+                    b.ToTable("Level", (string)null);
                 });
 
             modelBuilder.Entity("WTSuccess.Domain.Models.Student", b =>
@@ -440,8 +441,8 @@ namespace WTSuccess.Infrastructure.Migrations
             modelBuilder.Entity("WTSuccess.Domain.Models.GameScene.GameQuestion", b =>
                 {
                     b.HasOne("WTSuccess.Domain.Models.GameScene.Level", "Level")
-                        .WithOne("GameQuestion")
-                        .HasForeignKey("WTSuccess.Domain.Models.GameScene.GameQuestion", "LevelWithNumberId")
+                        .WithMany("GameQuestion")
+                        .HasForeignKey("LevelWithNumberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -493,8 +494,7 @@ namespace WTSuccess.Infrastructure.Migrations
 
             modelBuilder.Entity("WTSuccess.Domain.Models.GameScene.Level", b =>
                 {
-                    b.Navigation("GameQuestion")
-                        .IsRequired();
+                    b.Navigation("GameQuestion");
                 });
 #pragma warning restore 612, 618
         }

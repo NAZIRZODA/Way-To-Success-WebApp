@@ -1,5 +1,4 @@
-﻿
-namespace WTSuccess.Application.Requests.Question
+﻿namespace WTSuccess.Application.Requests.Question
 {
     public abstract class QuestionRequestModel : BaseRequest
     {

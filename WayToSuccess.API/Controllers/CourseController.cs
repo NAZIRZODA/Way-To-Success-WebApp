@@ -39,7 +39,7 @@ namespace WTSuccess.API.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public void Put(ulong id, [FromBody] CourseRequestModel course)
+        public void Put(ulong id, [FromBody] UpdateCourseRequestModel course)
         {
             _courseService.Update(id, course);
         }

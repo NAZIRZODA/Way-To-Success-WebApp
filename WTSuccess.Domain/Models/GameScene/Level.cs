@@ -8,7 +8,7 @@ namespace WTSuccess.Domain.Models.GameScene
 {
     public class Level : EntityBase
     {
-        public virtual GameQuestion GameQuestion { get; set; }
+        public virtual List<GameQuestion>? GameQuestion { get; set; }
         public ulong LevelWithNumber { get; set; }
     }
 }

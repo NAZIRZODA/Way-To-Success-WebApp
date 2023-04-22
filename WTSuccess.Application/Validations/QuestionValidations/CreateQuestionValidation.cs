@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Requests.Question;
 using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Validations.QuestionValidations
 {
@@ -13,8 +14,8 @@ namespace WTSuccess.Application.Validations.QuestionValidations
     {
         public CreateQuestionValidation()
         {
-            RuleFor(s => s.Answers.All(s => s.isCorrect != true)).Equal(false).WithMessage("At least need 1 true answer");
-            RuleFor(s => s.Answers.All(s => s.isCorrect != false)).Equal(true).WithMessage("you can add only one true answer");
+            var s = RuleFor(s => s.Answers.All(s => s.isCorrect == false)).Equal(false).WithMessage("you can not add 4 false answer");
+            RuleFor(s => s.Answers.All(s => s.isCorrect == true)).Equal(false).WithMessage("you can add only one true answer");
             RuleFor(a => a.Answers.Count()).GreaterThan(3).LessThan(5).WithMessage("Answer need to Add 4");
         }
     }

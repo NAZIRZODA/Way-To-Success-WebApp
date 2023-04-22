@@ -6,6 +6,7 @@ using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Mappers;
 using WTSuccess.Application.Services;
+using WTSuccess.Application.Validations.QuestionValidations;
 using WTSuccess.Application.Validations.StudentValidations;
 using WTSuccess.Infrastructure.Persistence.DataBases;
 using WTSuccess.Infrastructure.Persistence.Repositories;
@@ -35,9 +36,16 @@ builder.Services.AddScoped<IStudentAnswerRepository,  StudentAnswerRepository>()
 
 builder.Services.AddScoped<IAnswerRepository,  AnswerRepository>();
 
+builder.Services.AddScoped<ILevelService, LevelService>();
+builder.Services.AddScoped<ILevelRepository, LevelRepository>();
+builder.Services.AddScoped<IGameQuestionService, GameQuestionService>();
+builder.Services.AddScoped<IGameQuestionRepository, GameQuestionRepository>();
+builder.Services.AddScoped<IGamePlayerRepository, GamePlayerRepository>();
+builder.Services.AddScoped<IGamePlayerService, GamePlayerService>();
+
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(CreateStudentValidations).Assembly);
-
+builder.Services.AddValidatorsFromAssembly(typeof(CreateQuestionValidation).Assembly);
 builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
 
 builder.Services.AddEndpointsApiExplorer();

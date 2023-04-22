@@ -19,4 +19,6 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
             builder.HasOne(x => x.Question).WithMany(q => q.Answers);
         }
     }
+
 }
+

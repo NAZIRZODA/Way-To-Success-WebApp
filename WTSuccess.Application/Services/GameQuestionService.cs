@@ -60,7 +60,7 @@ namespace WTSuccess.Application.Services
             if (entity == null) throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound);
 
             var gameQuestionRequestToUpdate = request as UpdateGameQuestionRequestModel;
-            var updateRequestToLevel = _mapper.Map(gameQuestionRequestToUpdate, entity);
+            var updateRequestToGameQuestion = _mapper.Map(gameQuestionRequestToUpdate, entity);
             _gameQuestionRepository.Update(entity);
             _gameQuestionRepository.SaveChanges();
             return _mapper.Map<GameQuestion, GameQuestionResponseModel>(entity);
