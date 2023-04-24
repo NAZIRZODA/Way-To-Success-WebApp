@@ -31,8 +31,8 @@ builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IStudentExamRepository, StudentExamRepository>();
 builder.Services.AddScoped<IStudentExamService, StudentExamService>();
-builder.Services.AddScoped<IStudentAnswerService,  StudentAnswerService>();
-builder.Services.AddScoped<IStudentAnswerRepository,  StudentAnswerRepository>();
+//builder.Services.AddScoped<IStudentAnswerService,  StudentAnswerService>();
+//builder.Services.AddScoped<IStudentAnswerRepository,  StudentAnswerRepository>();
 
 builder.Services.AddScoped<IAnswerRepository,  AnswerRepository>();
 

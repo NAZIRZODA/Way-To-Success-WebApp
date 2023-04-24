@@ -10,6 +10,6 @@ namespace WTSuccess.Application.Common.Interfaces.Repositories
 {
     public interface IStudentAnswerRepository : IRepository<StudentAnswer>
     {
-        public bool CheckForDuplicateAnswers(CreateStudentAnswerRequestModel createStudentAnswerRequestModel);
+        //public bool CheckForDuplicateAnswers(CreateStudentAnswerRequestModel createStudentAnswerRequestModel);
     }
 }

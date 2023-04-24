@@ -11,7 +11,7 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
             builder.ToTable(nameof(Question));
             builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.Chapter).WithMany(ch => ch.Questions);
+            builder.HasOne(x => x.Chapter).WithMany(ch => ch.Questions).HasForeignKey(s=>s.ChapterId);
         }
     }
 }

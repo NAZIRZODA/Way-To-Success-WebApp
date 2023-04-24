@@ -5,14 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WTSuccess.Application.Requests.Question;
-using WTSuccess.Domain.Models;
-using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Validations.QuestionValidations
 {
-    public class CreateQuestionValidation : AbstractValidator<CreateQuestionRequestModel>
+    public class UpdateQuestionValidation : AbstractValidator<UpdateQuestionRequestModel>
     {
-        public CreateQuestionValidation()
+        public UpdateQuestionValidation()
         {
             RuleFor(s => s.Answers.Count(a => a.isCorrect)).Equal(1).WithMessage("You can add only one correct answer");
             RuleFor(s => s.Answers.Count(a => !a.isCorrect)).Equal(3).WithMessage("You need to add three incorrect answers");

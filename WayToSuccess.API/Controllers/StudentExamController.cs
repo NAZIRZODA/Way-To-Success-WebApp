@@ -32,5 +32,11 @@ namespace WayToSuccess.API.Controllers
         {
             _studentExamService.Add(studentExamRequest);
         }
+
+        [HttpPost("TakeExam")]
+        public string PostTakeExam([FromBody] List<CreateStudentAnswerRequestModel> studentAnswer)
+        {
+           return _studentExamService.AddExamAnswers(studentAnswer);
+        }
     }
 }

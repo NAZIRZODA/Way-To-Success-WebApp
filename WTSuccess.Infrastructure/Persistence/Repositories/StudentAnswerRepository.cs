@@ -23,15 +23,15 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public bool CheckForDuplicateAnswers(CreateStudentAnswerRequestModel createStudentAnswerRequestModel)
-        {
-            var result = _dbStudentAnswer.FirstOrDefault(i => i.AnswerId == createStudentAnswerRequestModel.AnswerId
-            && i.StudenExamId == createStudentAnswerRequestModel.StudenExamId
-            && i.QuestionId == createStudentAnswerRequestModel.QuestionId);
+        //public bool CheckForDuplicateAnswers(CreateStudentAnswerRequestModel createStudentAnswerRequestModel)
+        //{
+        //    var result = _dbStudentAnswer.FirstOrDefault(i => i.AnswerId == createStudentAnswerRequestModel.AnswerId
+        //    && i.StudenExamId == createStudentAnswerRequestModel.StudenExamId
+        //    && i.QuestionId == createStudentAnswerRequestModel.QuestionId);
 
-            if (result == null || System.DBNull.Value==null) return false;
+        //    if (result == null || System.DBNull.Value==null) return false;
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

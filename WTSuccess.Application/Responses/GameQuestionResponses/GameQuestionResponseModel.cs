@@ -9,7 +9,7 @@ namespace WTSuccess.Application.Responses.GameQuestionResponses
 {
     public class GameQuestionResponseModel : BaseResponse
     {
-        public ulong Level { get; set; }
+        public ulong LevelWithNumberId { get; set; }
         public string Question { get; set; }
         public List<GameQuestionAnswerResponseModel> QuestionAnswer { get; set; }
     }

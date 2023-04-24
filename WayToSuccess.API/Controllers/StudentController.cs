@@ -23,11 +23,11 @@ namespace WTSuccess.API.Controllers
             return _studentService.Get(id);
         }
 
-        [HttpPost]
-        public void Add(CreateStudentRequestModel student)
-        {
-            _studentService.Add(student);
-        }
+        //[HttpPost]
+        //public void Add(CreateStudentRequestModel student)
+        //{
+        //    _studentService.Add(student);
+        //}
 
         [HttpPost("AddCourse")]
         public void AddCourse(ulong courseId, ulong studentId)
@@ -35,24 +35,22 @@ namespace WTSuccess.API.Controllers
             _studentService.AddCourse(courseId, studentId);
         }
 
-        [HttpPut("id")]
-        public void Update(ulong id, UpdateStudentRequestModel student)
-        {
-            _studentService.Update(id, student);
-        }
+        //[HttpPut("id")]
+        //public void Update(ulong id, UpdateStudentRequestModel student)
+        //{
+        //    _studentService.Update(id, student);
+        //}
 
-        [HttpDelete("id")]
-        public void DeleteById(ulong id)
-        {
-            _studentService.Delete(id);
-        }
+        //[HttpDelete("id")]
+        //public void DeleteById(ulong id)
+        //{
+        //    _studentService.Delete(id);
+        //}
 
-        [HttpGet("GetAll")]
-        public IEnumerable<StudentResponseModel> GetAll(int pageList, int pageNumber)
-        {
-            return _studentService.GetAll(pageList, pageNumber);
-        
-        
-        }
+        //[HttpGet("GetAll")]
+        //public IEnumerable<StudentResponseModel> GetAll(int pageList, int pageNumber)
+        //{
+        //    return _studentService.GetAll(pageList, pageNumber);
+        //}
     }
 }
