@@ -17,7 +17,10 @@ using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Application.Services
 {
-    public class StudentExamService : BaseService<StudentExam, StudentExamResponseModel, StudentExamRequestModel>, IStudentExamService
+    public class StudentExamService : BaseService<StudentExam,
+        StudentExamResponseModel,
+        StudentExamRequestModel>,
+        IStudentExamService
     {
         private readonly IStudentExamRepository _studentExamRepository;
         private readonly IMapper _mapper;
@@ -44,9 +47,11 @@ namespace WTSuccess.Application.Services
             _studentExamRepository.SaveChanges();
         }
 
-        public string AddExamAnswers(List<CreateStudentAnswerRequestModel> createStudentAnswerRequestModels)
+        public string AddExamAnswers(
+            List<CreateStudentAnswerRequestModel> createStudentAnswerRequestModels)
         {
-            var mappedToStudentAnswer = _mapper.Map<List<CreateStudentAnswerRequestModel>, List<StudentAnswer>>(createStudentAnswerRequestModels);
+            var mappedToStudentAnswer = _mapper.Map<List<CreateStudentAnswerRequestModel>,
+                List<StudentAnswer>>(createStudentAnswerRequestModels);
             return _studentExamRepository.AddExamAnswers(mappedToStudentAnswer);
         }
 
@@ -56,7 +61,8 @@ namespace WTSuccess.Application.Services
             var studentExam = _studentExamRepository.FindById(studentExamId);
             if (studentExam == null) throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound);
             var questions = studentExam.Chapter.Questions;
-            var mappedToRespone = _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionResponseModel>>(questions);
+            var mappedToRespone = _mapper.Map<IEnumerable<Question>,
+                IEnumerable<QuestionResponseModel>>(questions);
             return mappedToRespone;
         }
     }

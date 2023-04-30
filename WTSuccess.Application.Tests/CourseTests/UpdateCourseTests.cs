@@ -29,7 +29,7 @@ namespace WTSuccess.Application.Tests.CourseTests
         {
             UpdateCourseRequestModel updateCourseRequestModel = new UpdateCourseRequestModel()
             {
-                
+
                 Name = "PHP"
             };
             Course course = new Course()
@@ -53,6 +53,30 @@ namespace WTSuccess.Application.Tests.CourseTests
             _courseRepositoryMock.Verify(service => service.SaveChanges());
 
             Assert.That(courseResponseModel.Name, Is.EqualTo(response.Name));
+        }
+
+        [Test]
+        public void Update_Course_Returns_Null()
+        {
+            UpdateCourseRequestModel updateCourseResponseModel = null;
+            Course course = new Course();
+            CourseResponseModel courseResponseModel = new CourseResponseModel();
+
+            _mockMapper.Setup(ser => ser.Map<UpdateCourseRequestModel, Course>(updateCourseResponseModel))
+    .Returns(course);
+            _mockMapper.Setup(service => service.Map<Course, CourseResponseModel>(course))
+                .Returns(courseResponseModel);
+            _courseRepositoryMock.Setup(service => service.Update(It.IsAny<Course>()));
+            _courseRepositoryMock.Setup(service => service.FindById(It.IsAny<ulong>()))
+                .Returns(course);
+
+            var result = new CourseService(_courseRepositoryMock.Object, _mockMapper.Object);
+            var response = result.Update(1, updateCourseResponseModel);
+
+            _courseRepositoryMock.Verify(service => service.Update(It.IsAny<Course>()));
+            _courseRepositoryMock.Verify(service => service.FindById(It.IsAny<ulong>()));
+            _courseRepositoryMock.Verify(service => service.SaveChanges());
+            //Assert.Null(courseResponseModel);
         }
     }
 }

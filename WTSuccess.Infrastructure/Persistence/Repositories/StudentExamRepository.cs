@@ -15,9 +15,8 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
     public class StudentExamRepository : Repository<StudentExam>, IStudentExamRepository
     {
         private readonly DbSet<StudentExam> _dbStudentExam;
-        private readonly EFContext _context;
-        private readonly DbSet<StudentAnswer> _dbStudentAnswer;
         private readonly EFContext _contextAnswer;
+
         private IEnumerable<Question> _question;
 
         public StudentExamRepository(EFContext context, EFContext contextAnswer) : base(context)
@@ -33,9 +32,12 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
             if (studentExam == null) throw new HttpStatusCodeException(System.Net.HttpStatusCode.NotFound);
             return studentExam;
         }
-        public string AddExamAnswers(List<StudentAnswer> createStudentAnswerRequestModels)
+        public string AddExamAnswers(List<StudentAnswer>
+            createStudentAnswerRequestModels)
         {
-            _question = _dbStudentExam.Find(createStudentAnswerRequestModels[0].StudenExamId).Chapter.Questions;
+            _question = _dbStudentExam
+                .Find(createStudentAnswerRequestModels[0].StudenExamId)
+                .Chapter.Questions;
             if (createStudentAnswerRequestModels.Count() != _question.Count()) throw new ExamException(ExamExceptionStatus.NotAnswered);
             var studentAnswers = CheckAnswers(createStudentAnswerRequestModels);
             _contextAnswer.AddRange(studentAnswers);
@@ -43,21 +45,26 @@ namespace WTSuccess.Infrastructure.Persistence.Repositories
             return $"you answered :{ResultOfExam(studentAnswers)} from {studentAnswers.Count()}";
         }
 
-        public List<StudentAnswer> CheckAnswers(List<StudentAnswer> createStudentAnswerRequestModels)
+        public List<StudentAnswer> CheckAnswers(List<StudentAnswer>
+            createStudentAnswerRequestModels)
         {
             var studentAnswers = new List<StudentAnswer>();
             var question = new Question();
             foreach (var studentAnswerItem in createStudentAnswerRequestModels)
             {
-                question = _question.FirstOrDefault(i => i.Id == studentAnswerItem.QuestionId);
-                var answer = question.Answers.FirstOrDefault(id => id.Id == studentAnswerItem.AnswerId);
-                studentAnswerItem.IsTrue = answer.isCorrect;
+                question = _question
+                    .FirstOrDefault(i => i.Id == studentAnswerItem.QuestionId);
+                var answer = question
+                    .Answers.FirstOrDefault(id => id.Id == studentAnswerItem.AnswerId);
+                studentAnswerItem
+                    .IsTrue = answer.isCorrect;
                 studentAnswers.Add(studentAnswerItem);
             }
             return studentAnswers;
         }
 
-        public string ResultOfExam(List<StudentAnswer> createStudentAnswerRequestModels)
+        public string ResultOfExam(List<StudentAnswer>
+            createStudentAnswerRequestModels)
         {
             int numberOfTrueAnswers = 0;
             foreach (var studentItemAnswer in createStudentAnswerRequestModels)
