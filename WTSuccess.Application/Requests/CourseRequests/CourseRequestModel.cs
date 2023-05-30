@@ -7,9 +7,8 @@ using WTSuccess.Domain.Models;
 
 namespace WTSuccess.Application.Requests.CourseRequests
 {
-    public class CourseRequestModel : BaseRequest
+    public abstract class CourseRequestModel : BaseRequest
     {
-        public ulong Id { get; set; }
         public string Name { get; set; }
         //public List<Chapter> Chapters { get; set; }
        // public List<Student> Students { get; set; }

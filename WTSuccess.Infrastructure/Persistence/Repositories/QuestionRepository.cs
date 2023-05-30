@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using WTSuccess.Application.Common.Interfaces.Repositories;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 using WTSuccess.Infrastructure.Persistence.DataBases;
 
 namespace WTSuccess.Infrastructure.Persistence.Repositories

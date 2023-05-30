@@ -12,7 +12,7 @@ namespace WTSuccess.Application.Validations.CourseValidations
     {
         public UpdateCourseValidations()
         {
-            RuleFor(n => n.Name).NotEmpty().NotNull().MinimumLength(2).MaximumLength(30);
+            RuleFor(n => n.Name).NotEmpty().NotNull().MinimumLength(2).MaximumLength(18);
         }
     }
 }

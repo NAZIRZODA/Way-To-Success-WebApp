@@ -15,7 +15,7 @@ namespace WTSuccess.Application.Validations.TopicValidations
             RuleFor(n=>n.Name).NotEmpty().NotNull().WithMessage("Name can not be null!");
             RuleFor(n => n.Name).MinimumLength(3).MaximumLength(30).WithMessage("Name's min character 3 max 30!");
             RuleFor(t=>t.Teory).NotEmpty().NotNull().WithMessage("Theory can not be null!");
-            RuleFor(n => n.Name).MinimumLength(50).MaximumLength(500).WithMessage("Theory's min character 3 max 30!");
+            RuleFor(n => n.Teory).MinimumLength(50).MaximumLength(500).WithMessage("Theory's min character 3 max 30!");
             RuleFor(chid => chid.ChapterId).NotNull().NotEmpty().WithMessage("Topic can not made without Chapter, please insert chapter id");
         }
     }

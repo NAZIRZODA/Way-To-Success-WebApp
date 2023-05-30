@@ -1,9 +1,12 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using System.Xml.Linq;
+using WayToSuccess.API;
 using WTSuccess.Application.Common.Interfaces;
 using WTSuccess.Application.Common.Interfaces.Repositories;
 using WTSuccess.Application.Mappers;
 using WTSuccess.Application.Services;
+using WTSuccess.Application.Validations.QuestionValidations;
 using WTSuccess.Application.Validations.StudentValidations;
 using WTSuccess.Infrastructure.Persistence.DataBases;
 using WTSuccess.Infrastructure.Persistence.Repositories;
@@ -14,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//injection of services and repositories 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ITopicService, TopicService>();
@@ -23,10 +27,25 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IChapterService, ChapterService>();
 builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<IStudentExamRepository, StudentExamRepository>();
+builder.Services.AddScoped<IStudentExamService, StudentExamService>();
+//builder.Services.AddScoped<IStudentAnswerService,  StudentAnswerService>();
+//builder.Services.AddScoped<IStudentAnswerRepository,  StudentAnswerRepository>();
+
+builder.Services.AddScoped<IAnswerRepository,  AnswerRepository>();
+
+builder.Services.AddScoped<ILevelService, LevelService>();
+builder.Services.AddScoped<ILevelRepository, LevelRepository>();
+builder.Services.AddScoped<IGameQuestionService, GameQuestionService>();
+builder.Services.AddScoped<IGameQuestionRepository, GameQuestionRepository>();
+builder.Services.AddScoped<IGamePlayerRepository, GamePlayerRepository>();
+builder.Services.AddScoped<IGamePlayerService, GamePlayerService>();
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(CreateStudentValidations).Assembly);
-
+builder.Services.AddValidatorsFromAssembly(typeof(CreateQuestionValidation).Assembly);
 builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration).Assembly);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -49,5 +68,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MigrateDatabase();
 
 app.Run();

@@ -22,4 +22,8 @@
     <ProjectReference Include="..\WTSuccess.Application\WTSuccess.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WTSuccess.Application\WTSuccess.Application.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.ExamScene;
 
 namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
 {
@@ -10,10 +10,8 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
         {
 
             builder.ToTable(nameof(StudentExam));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(x => x.Id);
-            builder.HasOne(x => x.Student).WithMany();
-            builder.HasOne(x => x.Question).WithMany();
-
         }
     }
 }

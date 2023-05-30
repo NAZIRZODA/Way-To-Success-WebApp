@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WTSuccess.Domain.Models;
+using WTSuccess.Domain.Models.CourseScene;
 
 namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
 {
@@ -14,8 +14,8 @@ namespace WTSuccess.Infrastructure.Persistence.TableConfiguration
         public void Configure(EntityTypeBuilder<Course> builder)
         {
             builder.ToTable(nameof(Course));
+            builder.Property(t => t.Id).UseIdentityColumn().HasColumnType("bigint").ValueGeneratedOnAdd();
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).ValueGeneratedOnAdd();
             builder.HasMany(c => c.Students).WithMany(s => s.Courses);
         }
     }
