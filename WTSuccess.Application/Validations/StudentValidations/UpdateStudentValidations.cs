@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +8,9 @@ using WTSuccess.Application.Requests.StudentRequests;
 
 namespace WTSuccess.Application.Validations.StudentValidations
 {
-    public class CreateStudentValidations : AbstractValidator<CreateStudentRequestModel>
+    public class UpdateStudentValidations : AbstractValidator<UpdateStudentRequestModel>
     {
-        public CreateStudentValidations()
+        public UpdateStudentValidations()
         {
             RuleFor(s => s.Name).NotEmpty().NotNull().WithMessage("Name can not be null or empty!");
             RuleFor(s => s.Surname).NotEmpty().NotNull().WithMessage("Surname can not be null or empty!");
